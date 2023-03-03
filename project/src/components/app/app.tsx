@@ -1,4 +1,5 @@
-import MainPage from '../../pages/main-page/main-page';
+// import MainPage from '../../pages/main-page/main-page';
+import OfferPage from '../../pages/offer-page/offer-page';
 
 type AppScreenProps = {
   placesToStay: number;
@@ -6,7 +7,8 @@ type AppScreenProps = {
 
 function App({placesToStay}: AppScreenProps): JSX.Element {
   return (
-    <MainPage placesToStay={placesToStay} />
+    // <MainPage placesToStay={placesToStay} />
+    <OfferPage />
   );
 }
 
