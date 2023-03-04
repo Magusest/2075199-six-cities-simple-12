@@ -1,5 +1,6 @@
 import MainPage from '../../pages/main-page/main-page';
 
+
 type AppScreenProps = {
   placesToStay: number;
 }
