@@ -1,3 +1,6 @@
+import Logo from '../../components/logo/logo';
+import { Link } from 'react-router-dom';
+
 function NotFoundPage(): JSX.Element {
   return (
     <>
@@ -5,9 +8,7 @@ function NotFoundPage(): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a>
+              <Logo />
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -35,13 +36,13 @@ function NotFoundPage(): JSX.Element {
         }}
       >
         <h1>404 Not Found</h1>
-        <a href="#"
+        <Link to="/"
           style={{
             cursor: 'pointer',
           }}
         >
           Нажми, чтобы вернуться на главную страницу!
-        </a>
+        </Link>
       </main>
 
     </>
