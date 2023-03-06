@@ -1,4 +1,5 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../const';
 
 import MainPage from '../../pages/main-page/main-page';
@@ -13,14 +14,16 @@ type AppScreenProps = {
 
 function App({placesToStay}: AppScreenProps): JSX.Element {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={AppRoute.Main} element={<MainPage placesToStay={placesToStay} />}/>
-        <Route path={AppRoute.Login} element={<LoginPage />} />
-        <Route path ={AppRoute.Room} element={<OfferPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path={AppRoute.Main} element={<MainPage placesToStay={placesToStay} />}/>
+          <Route path={AppRoute.Login} element={<LoginPage />} />
+          <Route path ={AppRoute.Room} element={<OfferPage />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

@@ -1,8 +1,12 @@
+import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 
 function OfferPage(): JSX.Element {
   return (
     <>
+      <Helmet>
+        <title>Шесть городов. Карточка отеля.</title>
+      </Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">

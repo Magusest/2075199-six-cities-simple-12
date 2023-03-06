@@ -1,9 +1,13 @@
 import Logo from '../../components/logo/logo';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 function NotFoundPage(): JSX.Element {
   return (
     <>
+      <Helmet>
+        <title>Шесть городов. Мы еще не придумали страницу по этому адресую</title>
+      </Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -35,7 +39,7 @@ function NotFoundPage(): JSX.Element {
           textAlign: 'center',
         }}
       >
-        <h1>404 Not Found</h1>
+        <h1>Мы еще не придумали страницу по этому адресу.</h1>
         <Link to="/"
           style={{
             cursor: 'pointer',

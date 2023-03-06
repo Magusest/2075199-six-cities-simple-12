@@ -1,8 +1,12 @@
+import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 
 function LoginPage() {
   return (
     <>
+      <Helmet>
+        <title>Шесть городов. Авторизация.</title>
+      </Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
