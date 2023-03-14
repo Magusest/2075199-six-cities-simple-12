@@ -1,11 +1,12 @@
-import { Header } from 'components';
-import { PlaceCard } from 'components';
+import { Header, OffersList } from 'components';
+// import { PlaceCard } from 'components';
+import { Offers } from 'types/offers';
 
-type MainPageScreenProps = {
-  placesToStay: number;
+type Props = {
+  offers: Offers;
 }
 
-function MainPage({placesToStay}: MainPageScreenProps): JSX.Element {
+function MainPage({offers}: Props): JSX.Element {
   return (
     <>
 
@@ -53,7 +54,7 @@ function MainPage({placesToStay}: MainPageScreenProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesToStay} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -71,11 +72,13 @@ function MainPage({placesToStay}: MainPageScreenProps): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
 
+                <OffersList offers={offers} />
+
+                {/* <PlaceCard />
                 <PlaceCard />
                 <PlaceCard />
                 <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
+                <PlaceCard /> */}
 
               </div>
             </section>
