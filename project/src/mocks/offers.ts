@@ -1,4 +1,4 @@
-import { Offers } from '../types/offers';
+import { Offers } from "../types/offers";
 
 export const offers: Offers = [
   {
@@ -15,7 +15,7 @@ export const offers: Offers = [
     "goods": [''],
     "host": {
     "avatarUrl": "img/1.png",
-    "id": 3,
+    "id": 1,
     "isPro": true,
     "name": "Angelina"
     },
@@ -37,7 +37,7 @@ export const offers: Offers = [
     "type": "apartment"
     },
   {
-    "bedrooms": 3,
+    "bedrooms": 2,
     "city": {
     "location": {
     "latitude": 52.370216,
@@ -46,15 +46,15 @@ export const offers: Offers = [
     },
     "name": "Amsterdam"
     },
-    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+    "description": "lorem to koren kvsdlkfnvasdjnvdasncasdjnvcasdjnvcaskdjncasdkjncasdjnc",
     "goods": [''],
     "host": {
     "avatarUrl": "img/1.png",
-    "id": 3,
+    "id": 2,
     "isPro": true,
-     "name": "Angelina"
+     "name": "Jonh"
     },
-    "id": 1,
+    "id": 2,
     "images": [
     "img/1.png"
     ],
@@ -64,15 +64,15 @@ export const offers: Offers = [
     "longitude": 4.673877537499948,
     "zoom": 8
     },
-    "maxAdults": 4,
+    "maxAdults": 2,
     "previewImage": "img/1.png",
-    "price": 120,
-    "rating": 4.8,
-    "title": "Beautiful & luxurious studio at great location",
+    "price": 100,
+    "rating": 4,
+    "title": "lorem loreml lor",
     "type": "apartment"
     },
   {
-    "bedrooms": 3,
+    "bedrooms": 1,
     "city": {
     "location": {
     "latitude": 52.370216,
@@ -81,15 +81,15 @@ export const offers: Offers = [
     },
     "name": "Amsterdam"
     },
-    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+    "description": "trtrtuwjsadbadsfvbnd",
     "goods": [''],
     "host": {
     "avatarUrl": "img/1.png",
     "id": 3,
     "isPro": true,
-     "name": "Angelina"
+     "name": "Mike"
     },
-    "id": 1,
+    "id": 3,
     "images": [
     "img/1.png"
     ],
@@ -99,15 +99,15 @@ export const offers: Offers = [
     "longitude": 4.673877537499948,
     "zoom": 8
     },
-    "maxAdults": 4,
+    "maxAdults": 1,
     "previewImage": "img/1.png",
-    "price": 120,
-    "rating": 4.8,
-    "title": "Beautiful & luxurious studio at great location",
+    "price": 1200,
+    "rating": 3,
+    "title": "relmcdsvasdv and sdkjvad;fsj",
     "type": "apartment"
   },
   {
-    "bedrooms": 3,
+    "bedrooms": 4,
     "city": {
     "location": {
     "latitude": 52.370216,
@@ -116,15 +116,15 @@ export const offers: Offers = [
     },
     "name": "Amsterdam"
     },
-    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+    "description": "zxlkcvjsdlkfvnsdkjcvnz`l,xcasdcv asdkcmasdfncmsdm skscvn asdclansdv",
     "goods": [''],
     "host": {
     "avatarUrl": "img/1.png",
-    "id": 3,
+    "id": 4,
     "isPro": true,
-     "name": "Angelina"
+     "name": "Tamara"
     },
-    "id": 1,
+    "id": 4,
     "images": [
     "img/1.png"
     ],
@@ -136,9 +136,9 @@ export const offers: Offers = [
     },
     "maxAdults": 4,
     "previewImage": "img/1.png",
-    "price": 120,
+    "price": 99,
     "rating": 4.8,
-    "title": "Beautiful & luxurious studio at great location",
+    "title": "Beautiful & luxn",
     "type": "apartment"
     },
 ]

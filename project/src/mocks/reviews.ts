@@ -16,7 +16,7 @@ export const reviews: Reviews = [
   {
     "comment": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
     "date": "Wed Mar 08 2023 14:29:49 GMT+0300 (Moscow Standard Time)",
-    "id": 1,
+    "id": 2,
     "rating": 4,
     "user": {
     "avatarUrl": "img/1.png",
@@ -28,7 +28,7 @@ export const reviews: Reviews = [
   {
     "comment": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
     "date": "Wed Mar 08 2023 14:29:49 GMT+0300 (Moscow Standard Time)",
-    "id": 1,
+    "id": 3,
     "rating": 4,
     "user": {
     "avatarUrl": "img/1.png",

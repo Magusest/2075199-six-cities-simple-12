@@ -2,11 +2,7 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../const';
 
-import MainPage from '../../pages/main-page/main-page';
-import LoginPage from '../../pages/login-page/login-page';
-import OfferPage from '../../pages/offer-page/offer-page';
-import NotFoundPage from '../../pages/not-found-page/not-found-page';
-
+import { MainPage, LoginPage, OfferPage, NotFoundPage } from 'pages';
 
 type AppScreenProps = {
   placesToStay: number;
