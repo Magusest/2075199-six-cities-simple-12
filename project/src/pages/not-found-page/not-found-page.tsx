@@ -1,3 +1,4 @@
+import { AppRoute } from 'const';
 import { Header } from 'components';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -18,7 +19,7 @@ function NotFoundPage(): JSX.Element {
         }}
       >
         <h1>Мы еще не придумали страницу по этому адресу.</h1>
-        <Link to="/">
+        <Link to={AppRoute.Main}>
           Нажми, чтобы вернуться на главную страницу!
         </Link>
       </main>
