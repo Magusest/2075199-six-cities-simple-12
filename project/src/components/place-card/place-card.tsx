@@ -1,3 +1,5 @@
+import { AppRoute } from 'const';
+import { Link } from 'react-router-dom';
 import { Offer } from 'types/offers';
 
 type Props = {
@@ -5,14 +7,14 @@ type Props = {
 }
 
 function PlaceCard({offer}: Props): JSX.Element {
-  const {previewImage, price, title, type} = offer;
+  const {previewImage, price, title, type, id} = offer;
 
   return (
     <article className="cities__card place-card">
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`${AppRoute.Room}${id}`}>
           <img className="place-card__image" src={`img/${previewImage}`} width="260" height="200" alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">

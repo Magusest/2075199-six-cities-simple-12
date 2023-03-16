@@ -1,5 +1,5 @@
 import { PlaceCard } from 'components';
-import { Offers } from 'types/offers';
+import { Offers, Offer } from 'types/offers';
 
 type Props = {
   offers: Offers;
@@ -8,7 +8,7 @@ type Props = {
 function OffersList({offers}: Props) {
   return (
     <>
-      {offers.map((offer) => (<PlaceCard key={offer.id} offer={offer} />))}
+      {offers.map((offer: Offer) => (<PlaceCard key={offer.id} offer={offer} />))}
     </>
   );
 }

@@ -12,7 +12,18 @@ export const offers: Offers = [
       'name': 'Amsterdam'
     },
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    'goods': [''],
+    'goods': [
+      'Wi-Fi',
+      'Washing machine',
+      'Towels',
+      'Heating',
+      'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Dishwasher',
+      'Cabel TV',
+      'Fridge'
+    ],
     'host': {
       'avatarUrl': 'img/1.png',
       'id': 1,
@@ -21,7 +32,12 @@ export const offers: Offers = [
     },
     'id': 1,
     'images': [
-      'img/1.png'
+      'img/room.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
+      'img/studio-01.jpg',
+      'img/apartment-01.jpg'
     ],
     'isPremium': false,
     'location': {
@@ -47,7 +63,9 @@ export const offers: Offers = [
       'name': 'Amsterdam'
     },
     'description': 'lorem to koren kvsdlkfnvasdjnvdasncasdjnvcasdjnvcaskdjncasdkjncasdjnc',
-    'goods': [''],
+    'goods': [
+      'Wi-Fi',
+    ],
     'host': {
       'avatarUrl': 'img/1.png',
       'id': 2,
@@ -56,7 +74,12 @@ export const offers: Offers = [
     },
     'id': 2,
     'images': [
-      'img/1.png'
+      'img/apartment-03.jpg',
+      'img/studio-01.jpg',
+      'img/apartment-01.jpg',
+      'img/room.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
     ],
     'isPremium': false,
     'location': {
@@ -82,7 +105,14 @@ export const offers: Offers = [
       'name': 'Amsterdam'
     },
     'description': 'trtrtuwjsadbadsfvbnd',
-    'goods': [''],
+    'goods': [
+      'Wi-Fi',
+      'Washing machine',
+      'Towels',
+      'Heating',
+      'Coffee machine',
+      'Baby seat',
+    ],
     'host': {
       'avatarUrl': 'img/1.png',
       'id': 3,
@@ -91,7 +121,10 @@ export const offers: Offers = [
     },
     'id': 3,
     'images': [
-      'img/1.png'
+      'img/room.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
     ],
     'isPremium': false,
     'location': {
@@ -117,7 +150,14 @@ export const offers: Offers = [
       'name': 'Amsterdam'
     },
     'description': 'zxlkcvjsdlkfvnsdkjcvnz`l,xcasdcv asdkcmasdfncmsdm skscvn asdclansdv',
-    'goods': [''],
+    'goods': [
+      'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Dishwasher',
+      'Cabel TV',
+      'Fridge'
+    ],
     'host': {
       'avatarUrl': 'img/1.png',
       'id': 4,
@@ -126,7 +166,7 @@ export const offers: Offers = [
     },
     'id': 4,
     'images': [
-      'img/1.png'
+      'img/apartment-01.jpg'
     ],
     'isPremium': false,
     'location': {

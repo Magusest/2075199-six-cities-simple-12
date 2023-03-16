@@ -1,5 +1,4 @@
 import { Header, OffersList } from 'components';
-// import { PlaceCard } from 'components';
 import { Offers } from 'types/offers';
 
 type Props = {
@@ -63,7 +62,7 @@ function MainPage({offers}: Props): JSX.Element {
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
-                <ul className="places__options places__options--custom places__options--opened">
+                <ul className="places__options places__options--custom places__options--opene">
                   <li className="places__option places__option--active" tabIndex={0}>Popular</li>
                   <li className="places__option" tabIndex={0}>Price: low to high</li>
                   <li className="places__option" tabIndex={0}>Price: high to low</li>
@@ -73,12 +72,6 @@ function MainPage({offers}: Props): JSX.Element {
               <div className="cities__places-list places__list tabs__content">
 
                 <OffersList offers={offers} />
-
-                {/* <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard /> */}
 
               </div>
             </section>

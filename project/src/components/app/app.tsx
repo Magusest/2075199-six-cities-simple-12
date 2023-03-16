@@ -16,7 +16,9 @@ function App({offers}: Props): JSX.Element {
         <Routes>
           <Route path={AppRoute.Main} element={<MainPage offers={offers} />}/>
           <Route path={AppRoute.Login} element={<LoginPage />} />
-          <Route path ={AppRoute.Room} element={<OfferPage />} />
+          <Route path ={AppRoute.Room}>
+            <Route path=':id' element={<OfferPage offers={offers} />} />
+          </Route>
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
