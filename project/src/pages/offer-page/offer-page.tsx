@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Header } from 'components';
+import { Header, ReviewsForm } from 'components';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Offers, Offer } from 'types/offers';
@@ -146,7 +146,8 @@ function OfferPage({offers}: Props): JSX.Element {
                     </div>
                   </li>
                 </ul>
-                <form className="reviews__form form" action="#" method="post">
+                <ReviewsForm />
+                {/* <form className="reviews__form form" action="#" method="post">
                   <label className="reviews__label form__label" htmlFor="review">Your review</label>
                   <div className="reviews__rating-form form__rating">
                     <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
@@ -191,7 +192,7 @@ function OfferPage({offers}: Props): JSX.Element {
                     </p>
                     <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
                   </div>
-                </form>
+                </form> */}
               </section>
             </div>
           </div>
