@@ -37,4 +37,4 @@ export const reviews: Reviews = [
       'name': 'Oliver.conner'
     }
   },
-]
+];

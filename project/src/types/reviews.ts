@@ -8,7 +8,7 @@ export type Review = {
     id: number;
     isPro: boolean;
     name: string;
-  }
+  };
 }
 
 export type Reviews = Review[];

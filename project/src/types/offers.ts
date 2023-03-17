@@ -5,9 +5,9 @@ export type Offer = {
       latitude: number;
       longitude: number;
       zoom: number;
-    }
+    };
     name: string;
-  }
+  };
   description: string;
   goods: string[];
   host: {
@@ -15,7 +15,7 @@ export type Offer = {
     id: number;
     isPro: boolean;
     name: string;
-  }
+  };
   id: number;
   images: string[];
   isPremium: boolean;
@@ -23,7 +23,7 @@ export type Offer = {
     latitude: number;
     longitude: number;
     zoom: number;
-  }
+  };
   maxAdults: number;
   previewImage: string;
   price: number;
