@@ -3,7 +3,7 @@ import { Logo, Authtorization } from 'components';
 import { useLocation } from 'react-router-dom';
 
 function Header(): JSX.Element {
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <header className="header">
