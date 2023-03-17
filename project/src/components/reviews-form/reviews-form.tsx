@@ -3,21 +3,6 @@ import { raitingRates } from 'const';
 
 const {log} = console;
 
-// function RenderReviewsRating(): JSX.Element {
-//   raitingRates.map((rate, index) => {
-//     return (
-//       <>
-//         <input className="form__rating-input visually-hidden" name="rating" value={index} id={`${index}-stars`} type="radio" key={rate} />
-//         <label htmlFor={`${index}-stars`} className="reviews__rating-label form__rating-label" title={rate}>
-//           <svg className="form__star-image" width="37" height="33">
-//             <use xlinkHref="#icon-star"></use>
-//           </svg>
-//         </label>
-//       </>
-//     )
-//   })
-// }
-
 export default function ReviewsForm () {
   const [formData, setFormData] = useState({
     rating: '',

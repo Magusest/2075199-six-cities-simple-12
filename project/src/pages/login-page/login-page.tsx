@@ -1,7 +1,7 @@
 import { AppRoute } from 'const';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { HeaderForAuth } from 'components';
+import { Header } from 'components';
 
 function LoginPage() {
   return (
@@ -10,7 +10,7 @@ function LoginPage() {
         <title>Шесть городов. Авторизация.</title>
       </Helmet>
 
-      <HeaderForAuth />
+      <Header />
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">
