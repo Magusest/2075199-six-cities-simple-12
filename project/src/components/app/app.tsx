@@ -1,26 +1,28 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { HelmetProvider } from 'react-helmet-async';
+import { AppRoute } from 'const';
+import { Offers } from 'types/offers';
 
-import MainPage from '../../pages/main-page/main-page';
-import LoginPage from '../../pages/login-page/login-page';
-import OfferPage from '../../pages/offer-page/offer-page';
-import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import { MainPage, LoginPage, OfferPage, NotFoundPage } from 'pages';
 
-
-type AppScreenProps = {
-  placesToStay: number;
+type Props = {
+  offers: Offers;
 }
 
-function App({placesToStay}: AppScreenProps): JSX.Element {
+function App({offers}: Props): JSX.Element {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={AppRoute.Main} element={<MainPage placesToStay={placesToStay} />}/>
-        <Route path={AppRoute.Login} element={<LoginPage />} />
-        <Route path ={AppRoute.Room} element={<OfferPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path={AppRoute.Main} element={<MainPage offers={offers} />}/>
+          <Route path={AppRoute.Login} element={<LoginPage />} />
+          <Route path ={AppRoute.Room}>
+            <Route path=':id' element={<OfferPage offers={offers} />} />
+          </Route>
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
