@@ -5,3 +5,4 @@ export { default as Header } from './header/header';
 export { default as OffersList } from './offers-list/offers-list';
 export { default as ReviewsForm } from './reviews-form/reviews-form';
 export { default as Authtorization } from './authorization/authorization';
+export { default as Map } from './map/map';

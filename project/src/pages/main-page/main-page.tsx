@@ -1,11 +1,24 @@
-import { Header, OffersList } from 'components';
-import { Offers } from 'types/offers';
+import { useState } from 'react';
+import { Header, OffersList, Map } from 'components';
+import { Offers , Offer} from 'types/offers';
+
+const {log} = console;
 
 type Props = {
   offers: Offers;
+  city: Offer['city'];
 }
 
-function MainPage({offers}: Props): JSX.Element {
+function MainPage({offers, city}: Props): JSX.Element {
+
+  const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
+
+  const onCardHover = (listItemName: string) => {
+    const currentOffer = offers.find((offer) => offer.title === listItemName);
+    setSelectedOffer(currentOffer);
+    log('hover');
+  };
+
   return (
     <>
 
@@ -71,12 +84,13 @@ function MainPage({offers}: Props): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
 
-                <OffersList offers={offers} />
+                <OffersList offers={offers} onCardHover={onCardHover} />
 
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map offers={offers} city={city} />
+              {/* <section className="cities__map map"></section> */}
             </div>
           </div>
         </div>

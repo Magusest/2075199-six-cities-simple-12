@@ -35,9 +35,9 @@ function OfferPage({offers}: Props): JSX.Element {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {images.map((image) =>
+              {images.map((image, index) =>
                 (
-                  <div className="property__image-wrapper" key={image}>
+                  <div className="property__image-wrapper" key={`${index + 1}${image}`}>
                     <img className="property__image" src={image} alt="Photo studio" />
                   </div>
                 )
