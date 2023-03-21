@@ -1,8 +1,8 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Header, OffersList, Map } from 'components';
 import { Offers , Offer} from 'types/offers';
 
-const {log} = console;
+// const {log} = console;
 
 type Props = {
   offers: Offers;
@@ -11,13 +11,7 @@ type Props = {
 
 function MainPage({offers, city}: Props): JSX.Element {
 
-  const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
-
-  const onCardHover = (listItemName: string) => {
-    const currentOffer = offers.find((offer) => offer.title === listItemName);
-    setSelectedOffer(currentOffer);
-    log('hover');
-  };
+  // const [] = useState<Offer | undefined>(undefined);
 
   return (
     <>
@@ -75,7 +69,8 @@ function MainPage({offers, city}: Props): JSX.Element {
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
-                <ul className="places__options places__options--custom places__options--opene">
+                {/* <ul className="places__options places__options--custom places__options--openen"> */}
+                <ul className="places__options places__options--custom">
                   <li className="places__option places__option--active" tabIndex={0}>Popular</li>
                   <li className="places__option" tabIndex={0}>Price: low to high</li>
                   <li className="places__option" tabIndex={0}>Price: high to low</li>
@@ -84,7 +79,7 @@ function MainPage({offers, city}: Props): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
 
-                <OffersList offers={offers} onCardHover={onCardHover} />
+                <OffersList offers={offers} />
 
               </div>
             </section>

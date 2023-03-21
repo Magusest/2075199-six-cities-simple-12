@@ -1,7 +1,8 @@
 import { AppRoute } from 'const';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Offer } from 'types/offers';
+import { Premium } from 'components';
 
 const {log} = console;
 
@@ -14,7 +15,10 @@ type Props = {
 }
 
 function PlaceCard({offer}: Props): JSX.Element {
-  const {previewImage, price, title, type, id} = offer;
+
+  const { pathname } = useLocation();
+
+  const {previewImage, price, title, type, id, isPremium} = offer;
 
   const [cardActive, setCardActive] = useState<CardStateType>({ id: null });
 
@@ -27,12 +31,12 @@ function PlaceCard({offer}: Props): JSX.Element {
     <article
       className={
         cardActive.id === id
-          ? 'cities__card place-card place-card_active'
-          : 'cities__card place-card'
+          ? `${AppRoute.Main === pathname ? 'cities__card' : 'property__card'} place-card place-card_active`
+          : `${AppRoute.Main === pathname ? 'cities__card' : 'property__card'} place-card`
       }
       onMouseEnter={() => mouseHandler(id)}
-      // "cities__card place-card"
     >
+      { isPremium ? < Premium /> : null }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Room}${id}`}>
           <img className="place-card__image" src={`img/${previewImage}`} width="260" height="200" alt="Place image" />
