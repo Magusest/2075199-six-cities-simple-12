@@ -1,0 +1,41 @@
+import { Marker, Icon } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { useEffect, useRef } from 'react';
+import { useMap } from 'hooks';
+import { Offers, Offer } from 'types/offers';
+
+type Props = {
+  offers: Offers;
+  city: Offer['city'];
+}
+
+const defaultMarker = new Icon({
+  iconUrl: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
+
+export default function Map({offers, city}: Props) {
+  const ref = useRef(null);
+  const map = useMap(ref, city);
+
+  useEffect(() => {
+    if (map) {
+      offers.forEach((offer) => {
+        const marker = new Marker(
+          {
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
+          }
+        );
+
+        marker.setIcon(defaultMarker)
+          .addTo(map);
+      });
+    }
+  }, [map, offers]);
+
+  return (
+    <section className="cities__map map" ref={ref}></section>
+  );
+}
