@@ -1,6 +1,13 @@
-export default function Premium () {
+// import { AppRoute } from 'const';
+
+
+type Props = {
+  className: string;
+}
+
+export default function PremiumMark ({className}: Props) {
   return (
-    <div className="place-card__mark">
+    <div className={className}>
       <span>Premium</span>
     </div>
   );

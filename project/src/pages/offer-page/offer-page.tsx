@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Header, Premium, ReviewsForm, ReviewsList, Map, OffersList } from 'components';
+import { Header, PremiumMark, ReviewsForm, ReviewsList, Map, OffersList } from 'components';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Offers, Offer } from 'types/offers';
@@ -10,6 +10,7 @@ type Props = {
 // const {log} = console;
 
 function OfferPage({offers}: Props): JSX.Element {
+
   const { id } = useParams();
   const [offer, setOffer] = useState<Offer>();
 
@@ -46,7 +47,7 @@ function OfferPage({offers}: Props): JSX.Element {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {isPremium ? < Premium /> : null}
+              {isPremium ? <PremiumMark className={'property__mark'}/> : null}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
                   {title}

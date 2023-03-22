@@ -8,5 +8,5 @@ export { default as Authtorization } from './authorization/authorization';
 export { default as Map } from './map/map';
 export { default as ReviewsList } from './reviews-list/reviews-list';
 export { default as Review } from './review/review';
-export { default as Premium } from './premium/premium';
+export { default as PremiumMark } from './premium/premium';
 

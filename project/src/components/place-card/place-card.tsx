@@ -2,7 +2,7 @@ import { AppRoute } from 'const';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Offer } from 'types/offers';
-import { Premium } from 'components';
+import { PremiumMark } from 'components';
 
 const {log} = console;
 
@@ -31,13 +31,15 @@ function PlaceCard({offer}: Props): JSX.Element {
     <article
       className={
         cardActive.id === id
-          ? `${AppRoute.Main === pathname ? 'cities__card' : 'property__card'} place-card place-card_active`
-          : `${AppRoute.Main === pathname ? 'cities__card' : 'property__card'} place-card`
+          ? `${AppRoute.Main === pathname ? 'cities__card' : 'near-places__card'} place-card place-card_active`
+          : `${AppRoute.Main === pathname ? 'cities__card' : 'near-places__card'} place-card`
       }
       onMouseEnter={() => mouseHandler(id)}
     >
-      { isPremium ? < Premium /> : null }
-      <div className="cities__image-wrapper place-card__image-wrapper">
+
+      {isPremium ? <PremiumMark className={'place-card__mark'}/> : null}
+
+      <div className={`${AppRoute.Main === pathname ? 'cities__image-wrapper' : 'near-places__image-wrapper'} place-card__image-wrapper`}>
         <Link to={`${AppRoute.Room}${id}`}>
           <img className="place-card__image" src={`img/${previewImage}`} width="260" height="200" alt="Place image" />
         </Link>
