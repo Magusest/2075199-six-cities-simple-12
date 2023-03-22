@@ -124,7 +124,7 @@ function OfferPage({offers}: Props): JSX.Element {
             </div>
           </div>
 
-          < Map offers={offers} city={offer.city}/>
+          <Map offers={offers} city={offer.city}/>
         </section>
         <div className="container">
           <section className="near-places places">
