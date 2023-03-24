@@ -3,6 +3,10 @@ import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
 import { useMap } from 'hooks';
 import { Offers, Offer } from 'types/offers';
+import { AppRoute } from 'const';
+import { useLocation } from 'react-router-dom';
+
+// const {log} = console;
 
 type Props = {
   offers: Offers;
@@ -16,6 +20,8 @@ const defaultMarker = new Icon({
 });
 
 export default function Map({offers, city}: Props) {
+
+  const {pathname} = useLocation();
   const ref = useRef(null);
   const map = useMap(ref, city);
 
@@ -35,7 +41,8 @@ export default function Map({offers, city}: Props) {
     }
   }, [map, offers]);
 
+
   return (
-    <section className="cities__map map" ref={ref}></section>
+    <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} ref={ref}></section>
   );
 }
