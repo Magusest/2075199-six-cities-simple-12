@@ -11,18 +11,23 @@ export default function ReviewsForm () {
 
   const {rating, review} = formData;
 
+  //  Оценка валидности формы.
+  //  Форму можно отправить если:
+  //  1) Пользователь поставил оценку и оставил полке отзыва пустым.
+  //  2) Еслт пользователь оставил оценку и написал отзыв не менее 50 знаков и не более 300.
+
   const isValidForm = () => {
     if (rating !== '') {
       if (review === '') {
-        return false;
-      } if (review.length > 0 && review.length < 50) {
         return true;
-      } if (review.length > 50) {
+      } if (review.length > 0 && review.length <= 50) {
         return false;
+      } if (review.length < 300) {
+        return true;
       }
     }
 
-    return true;
+    return false;
   };
 
   const changeHandler = (evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -52,7 +57,7 @@ export default function ReviewsForm () {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={isValidForm()}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!isValidForm()}>Submit</button>
       </div>
     </form>
   );

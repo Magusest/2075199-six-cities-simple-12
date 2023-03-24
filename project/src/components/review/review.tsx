@@ -1,6 +1,6 @@
 export default function Review () {
   return (
-    <li className="reviews__item">
+    <>
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
@@ -26,6 +26,6 @@ export default function Review () {
         </p>
         <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
       </div>
-    </li>
+    </>
   );
 }
