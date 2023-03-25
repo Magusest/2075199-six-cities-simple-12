@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { defaultCity } from 'const';
 import { App } from 'components';
 import { offers } from 'mocks/offers';
-
-const currentCity = offers[0].city;
 
 
 const root = ReactDOM.createRoot(
@@ -13,8 +12,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      offers = {offers}
-      city = {currentCity}
+      offers={offers}
+      city={defaultCity}
     />
   </React.StrictMode>,
 );

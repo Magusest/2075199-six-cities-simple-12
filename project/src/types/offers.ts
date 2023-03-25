@@ -1,3 +1,5 @@
+export type Cities = string[];
+
 export type Location = {
     latitude: number;
     longitude: number;

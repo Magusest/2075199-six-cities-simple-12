@@ -1,17 +1,14 @@
-// import { useState } from 'react';
-import { Header, OffersList, Map } from 'components';
-import { Offers , Offer} from 'types/offers';
+import { Header, LocationList, OffersList, Map } from 'components';
+import { Offers, City } from 'types/offers';
 
 // const {log} = console;
 
 type Props = {
   offers: Offers;
-  city: Offer['city'];
+  city: City;
 }
 
 function MainPage({offers, city}: Props): JSX.Element {
-
-  // const [] = useState<Offer | undefined>(undefined);
 
   return (
     <>
@@ -22,7 +19,10 @@ function MainPage({offers, city}: Props): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
+
+            <LocationList />
+
+            {/* <ul className="locations__list tabs__list">
               <li className="locations__item">
                 <a className="locations__item-link tabs__item" href="#">
                   <span>Paris</span>
@@ -53,7 +53,9 @@ function MainPage({offers, city}: Props): JSX.Element {
                   <span>Dusseldorf</span>
                 </a>
               </li>
-            </ul>
+            </ul> */}
+
+
           </section>
         </div>
         <div className="cities">

@@ -1,15 +1,21 @@
+import { City } from 'types/offers';
+
 const AppRoute = {
   Main: '/',
   Login: '/login',
   Room: '/offer/',
 } as const;
 
-const offerCities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldolf'];
-
-const defaultCity = 'Amsterdam';
+const defaultCity: City = {
+  'location': {
+    'latitude': 52.370216,
+    'longitude': 4.895168,
+    'zoom': 10
+  },
+  'name': 'Amsterdam'
+};
 
 export {
   AppRoute,
-  offerCities,
   defaultCity,
 };

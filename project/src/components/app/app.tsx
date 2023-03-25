@@ -1,14 +1,14 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from 'const';
-import { Offers, Offer } from 'types/offers';
+import { Offers, City } from 'types/offers';
 
 import { MainPage, LoginPage, OfferPage, NotFoundPage } from 'pages';
 
 type Props = {
   offers: Offers;
-  city: Offer['city'];
-}
+  city: City;
+};
 
 function App({offers, city}: Props): JSX.Element {
   return (
