@@ -11,3 +11,4 @@ export { default as Review } from './review/review';
 export { default as PremiumMark } from './premium/premium';
 export { default as LocationList } from './locations-list/locations-list';
 export { default as Location } from './location/location';
+export { default as PlaceSorting } from './place-sorting/place-sorting';
