@@ -181,4 +181,48 @@ export const offers: Offers = [
     'title': 'Beautiful & luxn',
     'type': 'apartment'
   },
+  {
+    'bedrooms': 4,
+    'city': {
+      'location': {
+        'latitude': 48.8534100,
+        'longitude': 2.3488000,
+        'zoom': 10
+      },
+      'name': 'Paris'
+    },
+    'description': 'zxlkcvjsdlkfvnsdkjcvnz`l,xcasdcv asdkcmasdfncmsdm skscvn asdclansdv',
+    'goods': [
+      'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Dishwasher',
+      'Cabel TV',
+      'Fridge',
+      'Many whore'
+    ],
+    'host': {
+      'avatarUrl': 'img/1.png',
+      'id': 4,
+      'isPro': true,
+      'name': 'Tamara'
+    },
+    'id': 5,
+    'images': [
+      'img/apartment-01.jpg'
+    ],
+    'isPremium': true,
+    'location': {
+      'latitude': 48.85363045754,
+      'longitude': 2.33880032456,
+      'zoom': 8
+    },
+    'maxAdults': 4,
+    'previewImage': 'apartment-01.jpg',
+    'price': 999999,
+    'rating': 5,
+    'title': 'Paris bordele',
+    'type': 'horel'
+  },
+
 ];

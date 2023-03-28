@@ -1,14 +1,16 @@
+import { useAppSlector } from 'hooks/state';
 import { Header, LocationList, PlaceSorting, OffersList, Map } from 'components';
-import { Offers, City } from 'types/offers';
 
 // const {log} = console;
 
-type Props = {
-  offers: Offers;
-  city: City;
-}
+const offerLocations: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldolf'];
 
-function MainPage({offers, city}: Props): JSX.Element {
+
+function MainPage(): JSX.Element {
+
+  const countOffers = useAppSlector(({countRooms}) => countRooms);
+  const curCity = useAppSlector(({city}) => city.name);
+
 
   return (
     <>
@@ -20,7 +22,7 @@ function MainPage({offers, city}: Props): JSX.Element {
         <div className="tabs">
           <section className="locations container">
 
-            <LocationList />
+            <LocationList locations={offerLocations}/>
 
           </section>
         </div>
@@ -28,18 +30,18 @@ function MainPage({offers, city}: Props): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+              <b className="places__found">{countOffers} {countOffers <= 1 ? 'place' : 'places' } to stay in {curCity}</b>
 
               < PlaceSorting />
 
               <div className="cities__places-list places__list tabs__content">
 
-                <OffersList offers={offers} />
+                <OffersList />
 
               </div>
             </section>
             <div className="cities__right-section">
-              <Map offers={offers} city={city} />
+              <Map />
             </div>
           </div>
         </div>

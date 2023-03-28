@@ -1,10 +1,10 @@
 import { Location } from 'components';
-import { Cities } from 'types/offers';
-import { offerLocations } from './const';
 
-const locations: Cities = offerLocations;
+type Props = {
+  locations: string[];
+}
 
-export default function LocationList () {
+export default function LocationList ({locations}: Props) {
   return (
     <ul className="locations__list tabs__list">
       {locations.map((location) => (

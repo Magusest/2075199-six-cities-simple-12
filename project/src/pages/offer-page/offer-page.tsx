@@ -2,20 +2,21 @@ import { Helmet } from 'react-helmet-async';
 import { Header, PremiumMark, ReviewsForm, ReviewsList, Map, OffersList } from 'components';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Offers, Offer } from 'types/offers';
+import { useAppSlector } from 'hooks/state';
+import { Offer } from 'types/offers';
 
-type Props = {
-  offers: Offers;
-}
 // const {log} = console;
 
-function OfferPage({offers}: Props): JSX.Element {
+function OfferPage(): JSX.Element {
 
   const { id } = useParams();
+
   const [offer, setOffer] = useState<Offer>();
 
+  const currentOffers = useAppSlector(({rooms}) => rooms);
+
   useEffect(() => {
-    setOffer(offers.find((currentOffer) => currentOffer.id === Number(id)));
+    setOffer(currentOffers.find((currentOffer) => currentOffer.id === Number(id)));
   }, [id]);
 
   if (!offer) {
@@ -124,13 +125,13 @@ function OfferPage({offers}: Props): JSX.Element {
             </div>
           </div>
 
-          <Map offers={offers} city={offer.city}/>
+          <Map />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers={offers} />
+              <OffersList />
             </div>
           </section>
         </div>

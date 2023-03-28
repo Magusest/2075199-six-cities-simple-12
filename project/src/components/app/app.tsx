@@ -1,24 +1,17 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from 'const';
-import { Offers, City } from 'types/offers';
-
 import { MainPage, LoginPage, OfferPage, NotFoundPage } from 'pages';
 
-type Props = {
-  offers: Offers;
-  city: City;
-};
-
-function App({offers, city}: Props): JSX.Element {
+function App(): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<MainPage offers={offers} city={city} />}/>
+          <Route path={AppRoute.Main} element={<MainPage />}/>
           <Route path={AppRoute.Login} element={<LoginPage />} />
           <Route path ={AppRoute.Room}>
-            <Route path=':id' element={<OfferPage offers={offers} />} />
+            <Route path=':id' element={<OfferPage />} />
           </Route>
           <Route path='*' element={<NotFoundPage />} />
         </Routes>

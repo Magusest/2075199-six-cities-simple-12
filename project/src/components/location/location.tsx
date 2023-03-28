@@ -1,32 +1,30 @@
-import { useState } from 'react';
-import { defaultCity } from 'const';
+import { useAppDispatch, useAppSlector } from 'hooks/state';
+import { changeCity } from 'store/actions';
 
-const {log} = console;
+// const {log} = console;
 
 type Props = {
   location: string;
 };
 
-type LocationStateType = string | null;
 
 export default function Location ({location}: Props) {
-  const [, setLocationActive] = useState<LocationStateType>(null);
 
-  const mouseHandler = (locationActive: string) => {
-    setLocationActive(locationActive);
-    log(locationActive);
-  };
+  const currentCity = useAppSlector(({city}) => city.name);
+
+  const dispatch = useAppDispatch();
+
 
   switch(location) {
-    case (defaultCity.name):
+    case (currentCity):
       return (
-        <a className="locations__item-link tabs__item tabs__item--active" onMouseEnter={() => mouseHandler(location)} href="#">
+        <a className="locations__item-link tabs__item tabs__item--active" onClick={() => dispatch(changeCity(location))} href="#">
           <span>{location}</span>
         </a>
       );
     default:
       return (
-        <a className="locations__item-link tabs__item" onMouseEnter={() => mouseHandler(location)} href="#">
+        <a className="locations__item-link tabs__item" onClick={() => dispatch(changeCity(location))} href="#">
           <span>{location}</span>
         </a>
       );
