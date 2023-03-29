@@ -8,17 +8,24 @@ import { useLocation } from 'react-router-dom';
 
 // const {log} = console;
 
-
 const defaultMarker = new Icon({
-  iconUrl: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
+  iconUrl: './img/pin.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
+
+const hoveredMarker = new Icon({
+  iconUrl: './img/pin-active.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
+
 
 export default function Map() {
 
   const currentOffers = useAppSlector(({rooms}) => rooms);
   const currentCity = useAppSlector(({city}) => city);
+  const hovereCard = useAppSlector(({hoveredCard}) => hoveredCard);
 
 
   const {pathname} = useLocation();
@@ -32,15 +39,19 @@ export default function Map() {
           {
             lat: offer.location.latitude,
             lng: offer.location.longitude,
+          }, {
+            icon: (offer.id === hovereCard)
+              ? hoveredMarker
+              : defaultMarker
           }
         );
 
-        marker.setIcon(defaultMarker)
-          .addTo(map);
+        // marker.setIcon(defaultMarker)
+        marker.addTo(map);
+
       });
     }
   }, [map, ref, currentOffers]);
-
 
   return (
     <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} ref={ref}></section>

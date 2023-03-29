@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity } from './actions';
+import { changeCity, hovereCard } from './actions';
 import { defaultCity } from 'const';
 import { offers } from 'mocks/offers';
 
@@ -9,11 +9,12 @@ const initialState = {
   city: defaultCity,
   rooms: offers,
   countRooms: offers.filter((offer) => offer.city.name === defaultCity.name).length,
+  hoveredCard: 0,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeCity, (state = initialState, actions) => {
+    .addCase(changeCity, (state, actions) => {
       if (actions.payload) {
         state.city.name = actions.payload;
         state.rooms = offers.filter((offer) => offer.city.name === actions.payload);
@@ -25,5 +26,8 @@ export const reducer = createReducer(initialState, (builder) => {
         }
       }
       return state;
+    })
+    .addCase(hovereCard, (state, actions) => {
+      state.hoveredCard = actions.payload;
     });
 });

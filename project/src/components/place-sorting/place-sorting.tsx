@@ -1,13 +1,12 @@
 import { useState } from 'react';
 
-const {log} = console;
+// const {log} = console;
 
 export default function PlaceSorting() {
   const [isOpen, setIsOpen] = useState(false);
 
   const clickTypeHendler = () => {
     setIsOpen(!isOpen);
-    log(isOpen);
   };
 
   return (
@@ -19,7 +18,6 @@ export default function PlaceSorting() {
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      {/* <ul className="places__options places__options--custom places__options--opened"> */}
       {!isOpen
         ? null
         :
