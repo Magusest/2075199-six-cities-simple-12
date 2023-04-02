@@ -1,6 +1,6 @@
-import { Marker, Icon } from 'leaflet';
+import { Marker, Icon, LayerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMap } from 'hooks';
 import { useAppSlector } from 'hooks/state';
 import { AppRoute } from 'const';
@@ -10,13 +10,13 @@ import { useLocation } from 'react-router-dom';
 
 const defaultMarker = new Icon({
   iconUrl: './img/pin.svg',
-  iconSize: [40, 40],
+  iconSize: [27, 39],
   iconAnchor: [20, 40],
 });
 
 const hoveredMarker = new Icon({
   iconUrl: './img/pin-active.svg',
-  iconSize: [40, 40],
+  iconSize: [27, 39],
   iconAnchor: [20, 40],
 });
 
@@ -32,28 +32,49 @@ export default function Map() {
   const ref = useRef(null);
   const map = useMap(ref, currentCity);
 
+  const [cityLocation, setCityLocation] = useState(currentCity.name);
+
+
   useEffect(() => {
     if (map) {
-      currentOffers.forEach((offer) => {
-        const marker = new Marker(
+      if (currentCity.name !== cityLocation) {
+        map.flyTo(
+          [
+            currentCity.location.latitude,
+            currentCity.location.longitude
+          ],
+          currentCity.location.zoom,
           {
-            lat: offer.location.latitude,
-            lng: offer.location.longitude,
-          }, {
-            icon: (offer.id === hovereCard)
-              ? hoveredMarker
-              : defaultMarker
+            animate: true,
+            duration: 1,
           }
         );
 
-        // marker.setIcon(defaultMarker)
-        marker.addTo(map);
+        setCityLocation(currentCity.name);
+      }
 
-      });
+      const markers = currentOffers.map(
+        (offer) =>
+          new Marker(
+            {
+              lat: offer.location.latitude,
+              lng: offer.location.longitude,
+            }, {
+              icon: offer.id === hovereCard ? hoveredMarker : defaultMarker,
+            }
+          )
+      );
+
+      const markerLayer = new LayerGroup(markers);
+      markerLayer.addTo(map);
+
+      return () => {
+        map.removeLayer(markerLayer);
+      };
     }
-  }, [map, ref, currentOffers]);
+  }, [currentCity, cityLocation, map, currentOffers]);
 
   return (
-    <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} ref={ref}></section>
+    <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} style={{height: '100%'}} ref={ref}></section>
   );
 }
