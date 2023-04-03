@@ -57,13 +57,6 @@ function PlaceCard({offer}: Props): JSX.Element {
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
             < RatingStars rating={rating} />
-            {/* <span
-              style= {{
-                width: raitingStars(rating),
-              }}
-            >
-            </span> */}
-            <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
