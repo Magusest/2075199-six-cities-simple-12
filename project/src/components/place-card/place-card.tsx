@@ -3,7 +3,7 @@ import { AppRoute, DEFAULT_SELECTED_CARD } from 'const';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Offer } from 'types/offers';
-import { PremiumMark } from 'components';
+import { PremiumMark, RatingStars } from 'components';
 import { hovereCard } from 'store/actions';
 
 // const {log} = console;
@@ -21,7 +21,7 @@ function PlaceCard({offer}: Props): JSX.Element {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
 
-  const {previewImage, price, title, type, id, isPremium} = offer;
+  const {previewImage, price, title, type, id, isPremium, rating} = offer;
   const [cardActive, setCardActive] = useState<CardStateType>({ id: null });
 
   const mouseHandler = (currentId: number) => {
@@ -56,12 +56,13 @@ function PlaceCard({offer}: Props): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span
+            < RatingStars rating={rating} />
+            {/* <span
               style= {{
-                width: '80%',
+                width: raitingStars(rating),
               }}
             >
-            </span>
+            </span> */}
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
