@@ -1,15 +1,17 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, hovereCard } from './actions';
-import { defaultCity } from 'const';
+import { changeCity, hovereCard, sortOffers } from './actions';
+import { defaultCity, DEFAULT_SORTING } from 'const';
 import { offers } from 'mocks/offers';
 
 // const {log} = console;
 
 const initialState = {
   city: defaultCity,
-  rooms: offers,
-  countRooms: offers.filter((offer) => offer.city.name === defaultCity.name).length,
+  rooms: offers.filter((offer) => offer.city.name === defaultCity.name),
+  sorting: DEFAULT_SORTING,
   hoveredCard: 0,
+  countRooms: offers.filter((offer) => offer.city.name === defaultCity.name).length,
+
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -29,5 +31,22 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(hovereCard, (state, actions) => {
       state.hoveredCard = actions.payload;
+    })
+    .addCase(sortOffers, (state, actions) => {
+      const {checkedSorting} = actions.payload;
+      state.sorting = checkedSorting;
+
+      state.rooms = state.rooms.sort((a, b) => {
+        switch (state.sorting) {
+          case 'Price: high to low':
+            return b.price - a.price;
+          case 'Price: low to high':
+            return a.price - b.price;
+          case 'Top rated first':
+            return b.rating - a.rating;
+          default:
+            return 0;
+        }
+      });
     });
 });

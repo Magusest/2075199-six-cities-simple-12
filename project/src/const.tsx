@@ -15,7 +15,18 @@ const defaultCity: City = {
   'name': 'Amsterdam'
 };
 
+const sortingOptions = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first',
+];
+
+const DEFAULT_SORTING = 'Popular';
+
 export {
   AppRoute,
   defaultCity,
+  sortingOptions,
+  DEFAULT_SORTING,
 };
