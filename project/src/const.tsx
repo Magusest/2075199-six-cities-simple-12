@@ -24,9 +24,12 @@ const sortingOptions = [
 
 const DEFAULT_SORTING = 'Popular';
 
+const plural = new Intl.PluralRules('eu-US');
+
 export {
   AppRoute,
   defaultCity,
   sortingOptions,
   DEFAULT_SORTING,
+  plural,
 };

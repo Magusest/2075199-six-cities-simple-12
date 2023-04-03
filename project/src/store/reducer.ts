@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, hovereCard, sortOffers } from './actions';
+import { updateOffers, changeCity, hovereCard, sortOffers } from './actions';
 import { defaultCity, DEFAULT_SORTING } from 'const';
 import { offers } from 'mocks/offers';
 
@@ -47,6 +47,10 @@ export const reducer = createReducer(initialState, (builder) => {
           default:
             return 0;
         }
-      });
+      }
+      );
+    })
+    .addCase(updateOffers, (state) => {
+      state.rooms = offers.filter((offer) => offer.city.name === defaultCity.name);
     });
 });
