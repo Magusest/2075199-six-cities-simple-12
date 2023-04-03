@@ -26,10 +26,13 @@ const DEFAULT_SORTING = 'Popular';
 
 const plural = new Intl.PluralRules('eu-US');
 
+const DEFAULT_SELECTED_CARD = -1;
+
 export {
   AppRoute,
   defaultCity,
   sortingOptions,
   DEFAULT_SORTING,
   plural,
+  DEFAULT_SELECTED_CARD,
 };

@@ -1,5 +1,5 @@
 import { useAppDispatch } from 'hooks/state';
-import { AppRoute } from 'const';
+import { AppRoute, DEFAULT_SELECTED_CARD } from 'const';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Offer } from 'types/offers';
@@ -19,13 +19,9 @@ type Props = {
 function PlaceCard({offer}: Props): JSX.Element {
 
   const { pathname } = useLocation();
-  // const hoveredCard = useAppSlector((hoveredCard) => hoveredCard);
-
   const dispatch = useAppDispatch();
 
-
   const {previewImage, price, title, type, id, isPremium} = offer;
-
   const [cardActive, setCardActive] = useState<CardStateType>({ id: null });
 
   const mouseHandler = (currentId: number) => {
@@ -41,7 +37,7 @@ function PlaceCard({offer}: Props): JSX.Element {
           : `${AppRoute.Main === pathname ? 'cities__card' : 'near-places__card'} place-card`
       }
       onMouseEnter={() => mouseHandler(id)}
-      onMouseLeave={() => dispatch(hovereCard(0))}
+      onMouseLeave={() => dispatch(hovereCard(DEFAULT_SELECTED_CARD))}
     >
 
       {isPremium ? <PremiumMark className={'place-card__mark'}/> : null}

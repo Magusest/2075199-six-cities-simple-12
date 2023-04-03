@@ -25,7 +25,7 @@ export default function Map() {
 
   const currentOffers = useAppSlector(({rooms}) => rooms);
   const currentCity = useAppSlector(({city}) => city);
-  const hovereCard = useAppSlector(({hoveredCard}) => hoveredCard);
+  const hoverCard = useAppSlector(({hoveredCard}) => hoveredCard);
 
 
   const {pathname} = useLocation();
@@ -60,7 +60,7 @@ export default function Map() {
               lat: offer.location.latitude,
               lng: offer.location.longitude,
             }, {
-              icon: offer.id === hovereCard ? hoveredMarker : defaultMarker,
+              icon: offer.id === hoverCard ? hoveredMarker : defaultMarker,
             }
           )
       );
@@ -72,9 +72,9 @@ export default function Map() {
         map.removeLayer(markerLayer);
       };
     }
-  }, [currentCity, cityLocation, map, currentOffers]);
+  }, [currentCity, cityLocation, map, currentOffers, hoverCard]);
 
   return (
-    <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} style={{height: '100%'}} ref={ref}></section>
+    <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} ref={ref}></section>
   );
 }

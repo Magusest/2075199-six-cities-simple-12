@@ -121,11 +121,13 @@ function OfferPage(): JSX.Element {
                 <ReviewsList />
 
                 <ReviewsForm />
+
               </section>
             </div>
           </div>
 
           <Map />
+
         </section>
         <div className="container">
           <section className="near-places places">

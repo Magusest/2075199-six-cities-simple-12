@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, Fragment, useState } from 'react';
 import { raitingRates } from './utils';
 
 // const {log} = console;
@@ -41,14 +41,14 @@ export default function ReviewsForm () {
       <div className="reviews__rating-form form__rating">
         {raitingRates.map(({title, value}) =>
           (
-            <>
-              <input className="form__rating-input visually-hidden" onChange={changeHandler} name="rating" value={value} id={`${value}-stars`} type="radio" key={title} />
+            <Fragment key={title}>
+              <input className="form__rating-input visually-hidden" onChange={changeHandler} name="rating" value={value} id={`${value}-stars`} type="radio"/>
               <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
                 <svg className="form__star-image" width="37" height="33">
                   <use xlinkHref="#icon-star"></use>
                 </svg>
               </label>
-            </>
+            </Fragment>
           )
         )}
       </div>
