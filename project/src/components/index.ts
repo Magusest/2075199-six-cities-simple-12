@@ -9,4 +9,6 @@ export { default as Map } from './map/map';
 export { default as ReviewsList } from './reviews-list/reviews-list';
 export { default as Review } from './review/review';
 export { default as PremiumMark } from './premium/premium';
-
+export { default as LocationList } from './locations-list/locations-list';
+export { default as Location } from './location/location';
+export { default as PlaceSorting } from './place-sorting/place-sorting';
