@@ -1,11 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { City, Offers } from 'types/offers';
 import { updateOffers, changeCity, hovereCard, sortOffers, loadOffers } from './actions';
 import { defaultCity, DEFAULT_SORTING, DEFAULT_SELECTED_CARD } from 'const';
 import { offers } from 'mocks/offers';
 
 // const {log} = console;
 
-const initialState = {
+type InitialState = {
+  city: City;
+  rooms: Offers;
+  sorting: string;
+  hoveredCard: number;
+  countRooms: number;
+}
+
+const initialState: InitialState = {
   city: defaultCity,
   rooms: offers.filter((offer) => offer.city.name === defaultCity.name),
   sorting: DEFAULT_SORTING,
