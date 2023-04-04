@@ -15,7 +15,24 @@ const defaultCity: City = {
   'name': 'Amsterdam'
 };
 
+const sortingOptions = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first',
+];
+
+const DEFAULT_SORTING = 'Popular';
+
+const plural = new Intl.PluralRules('eu-US');
+
+const DEFAULT_SELECTED_CARD = -1;
+
 export {
   AppRoute,
   defaultCity,
+  sortingOptions,
+  DEFAULT_SORTING,
+  plural,
+  DEFAULT_SELECTED_CARD,
 };

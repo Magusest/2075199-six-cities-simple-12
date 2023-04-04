@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Header, PremiumMark, ReviewsForm, ReviewsList, Map, OffersList } from 'components';
+import { Header, PremiumMark, ReviewsForm, ReviewsList, Map, OffersList, RatingStars } from 'components';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSlector } from 'hooks/state';
@@ -56,13 +56,7 @@ function OfferPage(): JSX.Element {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span
-                    style={{
-                      width: '80%',
-                    }}
-                  >
-                  </span>
-                  <span className="visually-hidden">Rating</span>
+                  < RatingStars rating={rating} />
                 </div>
                 <span className="property__rating-value rating__value">{rating}</span>
               </div>
@@ -121,11 +115,13 @@ function OfferPage(): JSX.Element {
                 <ReviewsList />
 
                 <ReviewsForm />
+
               </section>
             </div>
           </div>
 
           <Map />
+
         </section>
         <div className="container">
           <section className="near-places places">

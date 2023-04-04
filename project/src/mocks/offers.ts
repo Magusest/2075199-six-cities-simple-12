@@ -48,7 +48,7 @@ export const offers: Offers = [
     'maxAdults': 4,
     'previewImage': 'apartment-01.jpg',
     'price': 120,
-    'rating': 4.8,
+    'rating': 1.1,
     'title': 'Beautiful & luxurious studio at great location',
     'type': 'apartment'
   },
@@ -90,7 +90,7 @@ export const offers: Offers = [
     'maxAdults': 2,
     'previewImage': 'apartment-03.jpg',
     'price': 100,
-    'rating': 4,
+    'rating': 2.2,
     'title': 'lorem loreml lor',
     'type': 'apartment'
   },

@@ -1,9 +1,9 @@
 import { useAppDispatch } from 'hooks/state';
-import { AppRoute } from 'const';
+import { AppRoute, DEFAULT_SELECTED_CARD } from 'const';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Offer } from 'types/offers';
-import { PremiumMark } from 'components';
+import { PremiumMark, RatingStars } from 'components';
 import { hovereCard } from 'store/actions';
 
 // const {log} = console;
@@ -19,13 +19,9 @@ type Props = {
 function PlaceCard({offer}: Props): JSX.Element {
 
   const { pathname } = useLocation();
-  // const hoveredCard = useAppSlector((hoveredCard) => hoveredCard);
-
   const dispatch = useAppDispatch();
 
-
-  const {previewImage, price, title, type, id, isPremium} = offer;
-
+  const {previewImage, price, title, type, id, isPremium, rating} = offer;
   const [cardActive, setCardActive] = useState<CardStateType>({ id: null });
 
   const mouseHandler = (currentId: number) => {
@@ -41,7 +37,7 @@ function PlaceCard({offer}: Props): JSX.Element {
           : `${AppRoute.Main === pathname ? 'cities__card' : 'near-places__card'} place-card`
       }
       onMouseEnter={() => mouseHandler(id)}
-      onMouseLeave={() => dispatch(hovereCard(0))}
+      onMouseLeave={() => dispatch(hovereCard(DEFAULT_SELECTED_CARD))}
     >
 
       {isPremium ? <PremiumMark className={'place-card__mark'}/> : null}
@@ -60,13 +56,7 @@ function PlaceCard({offer}: Props): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span
-              style= {{
-                width: '80%',
-              }}
-            >
-            </span>
-            <span className="visually-hidden">Rating</span>
+            < RatingStars rating={rating} />
           </div>
         </div>
         <h2 className="place-card__name">
