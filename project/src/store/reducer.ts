@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { updateOffers, changeCity, hovereCard, sortOffers } from './actions';
+import { updateOffers, changeCity, hovereCard, sortOffers, loadOffers } from './actions';
 import { defaultCity, DEFAULT_SORTING, DEFAULT_SELECTED_CARD } from 'const';
 import { offers } from 'mocks/offers';
 
@@ -52,5 +52,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(updateOffers, (state) => {
       state.rooms = offers.filter((offer) => offer.city.name === defaultCity.name);
+    })
+    .addCase(loadOffers, (state, actions) => {
+      state.rooms = actions.payload;
     });
 });
