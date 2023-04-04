@@ -23,7 +23,7 @@ const hoveredMarker = new Icon({
 
 export default function Map() {
 
-  const currentOffers = useAppSlector(({rooms}) => rooms);
+  const currentOffers = useAppSlector(({currentRooms}) => currentRooms);
   const currentCity = useAppSlector(({city}) => city);
   const hoverCard = useAppSlector(({hoveredCard}) => hoveredCard);
 

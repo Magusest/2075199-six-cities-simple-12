@@ -19,7 +19,7 @@ const offerLocations: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', '
 
 function MainPage(): JSX.Element {
 
-  const countOffers = useAppSlector(({countRooms}) => countRooms);
+  const countOffers = useAppSlector(({currentRooms}) => currentRooms.length);
   const curCity = useAppSlector(({city}) => city.name);
 
   const plasesText = getTextByCount(countOffers, curCity);

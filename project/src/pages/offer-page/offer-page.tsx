@@ -13,7 +13,7 @@ function OfferPage(): JSX.Element {
 
   const [offer, setOffer] = useState<Offer>();
 
-  const currentOffers = useAppSlector(({rooms}) => rooms);
+  const currentOffers = useAppSlector(({currentRooms}) => currentRooms);
 
   useEffect(() => {
     setOffer(currentOffers.find((currentOffer) => currentOffer.id === Number(id)));

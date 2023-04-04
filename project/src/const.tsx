@@ -6,13 +6,19 @@ const AppRoute = {
   Room: '/offer/',
 } as const;
 
+const APIRoute = {
+  Offers: '/hotels',
+  Login: '/login',
+  Logout: '/logout',
+} as const;
+
 const defaultCity: City = {
   'location': {
-    'latitude': 52.370216,
-    'longitude': 4.895168,
+    'latitude': 48.864716,
+    'longitude': 2.3488,
     'zoom': 10
   },
-  'name': 'Amsterdam'
+  'name': 'Paris'
 };
 
 const sortingOptions = [
@@ -35,4 +41,5 @@ export {
   DEFAULT_SORTING,
   plural,
   DEFAULT_SELECTED_CARD,
+  APIRoute,
 };
