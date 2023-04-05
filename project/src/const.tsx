@@ -12,6 +12,8 @@ const APIRoute = {
   Logout: '/logout',
 } as const;
 
+const offerLocations: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldolf'];
+
 const defaultCity: City = {
   'location': {
     'latitude': 48.864716,
@@ -36,10 +38,11 @@ const DEFAULT_SELECTED_CARD = -1;
 
 export {
   AppRoute,
+  APIRoute,
+  offerLocations,
   defaultCity,
   sortingOptions,
   DEFAULT_SORTING,
   plural,
   DEFAULT_SELECTED_CARD,
-  APIRoute,
 };

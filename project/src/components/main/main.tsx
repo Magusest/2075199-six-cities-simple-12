@@ -1,8 +1,8 @@
 import { useAppSlector } from 'hooks/state';
-import { plural } from 'const';
+import { plural, offerLocations } from 'const';
 import { LocationList, PlaceSorting, OffersList, Map } from 'components';
 
-const offerLocations: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldolf'];
+// const offerLocations: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldolf'];
 
 function getTextByCount(count: number, city: string): string {
   const pluralRules = plural.select(count);
