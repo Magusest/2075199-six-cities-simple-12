@@ -1,17 +1,29 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { updateOffers, changeCity, hovereCard, sortOffers } from './actions';
+import { City, Offers } from 'types/offers';
+import { changeCity, hovereCard, sortOffers, loadOffers, setRoomsLoadingStatus } from './actions';
 import { defaultCity, DEFAULT_SORTING, DEFAULT_SELECTED_CARD } from 'const';
-import { offers } from 'mocks/offers';
+// import { offers } from 'mocks/offers';
 
 // const {log} = console;
 
-const initialState = {
+type InitialState = {
+  city: City;
+  currentRooms: Offers;
+  allRooms: Offers;
+  sorting: string;
+  hoveredCard: number;
+  isRoomsLoading: boolean;
+  error: string | null;
+}
+
+const initialState: InitialState = {
   city: defaultCity,
-  rooms: offers.filter((offer) => offer.city.name === defaultCity.name),
+  currentRooms: [],
+  allRooms: [],
   sorting: DEFAULT_SORTING,
   hoveredCard: DEFAULT_SELECTED_CARD,
-  countRooms: offers.filter((offer) => offer.city.name === defaultCity.name).length,
-
+  isRoomsLoading: false,
+  error: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -19,11 +31,10 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(changeCity, (state, actions) => {
       if (actions.payload) {
         state.city.name = actions.payload;
-        state.rooms = offers.filter((offer) => offer.city.name === actions.payload);
-        state.countRooms = state.rooms.length;
+        state.currentRooms = state.allRooms.filter((offer) => offer.city.name === actions.payload);
 
-        if (state.rooms.length !== 0) {
-          const room = state.rooms[0];
+        if (state.currentRooms.length !== 0) {
+          const room = state.currentRooms[0];
           state.city = room.city;
         }
       }
@@ -36,7 +47,7 @@ export const reducer = createReducer(initialState, (builder) => {
       const {checkedSorting} = actions.payload;
       state.sorting = checkedSorting;
 
-      state.rooms = state.rooms.sort((a, b) => {
+      state.currentRooms = state.currentRooms.sort((a, b) => {
         switch (state.sorting) {
           case 'Price: high to low':
             return b.price - a.price;
@@ -50,7 +61,11 @@ export const reducer = createReducer(initialState, (builder) => {
       }
       );
     })
-    .addCase(updateOffers, (state) => {
-      state.rooms = offers.filter((offer) => offer.city.name === defaultCity.name);
+    .addCase(loadOffers, (state, actions) => {
+      state.allRooms = actions.payload;
+      state.currentRooms = state.allRooms.filter((offer) => offer.city.name === state.city.name);
+    })
+    .addCase(setRoomsLoadingStatus, (state, actions) => {
+      state.isRoomsLoading = actions.payload;
     });
 });

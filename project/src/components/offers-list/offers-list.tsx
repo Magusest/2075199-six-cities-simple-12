@@ -9,11 +9,11 @@ function OffersList() {
 
   const { id } = useParams();
 
-  const currentOffers = useAppSlector(({rooms}) => rooms);
+  const currentOffers = useAppSlector(({currentRooms}) => currentRooms);
   const currentCity = useAppSlector(({city}) => city.name);
 
 
-  const renderOffers = currentOffers.filter((room) => room.city.name === currentCity).filter((offer) => offer.id !== Number(id));
+  const renderOffers = currentOffers.filter((currentRooms) => currentRooms.city.name === currentCity).filter((offer) => offer.id !== Number(id));
 
 
   return (

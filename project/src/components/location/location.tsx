@@ -1,4 +1,6 @@
 import { useAppDispatch, useAppSlector } from 'hooks/state';
+import { Link } from 'react-router-dom';
+import { AppRoute } from 'const';
 import { changeCity } from 'store/actions';
 
 // const {log} = console;
@@ -18,15 +20,15 @@ export default function Location ({location}: Props) {
   switch(location) {
     case (currentCity):
       return (
-        <a className="locations__item-link tabs__item tabs__item--active" onClick={() => dispatch(changeCity(location))} href="#">
+        <Link className="locations__item-link tabs__item tabs__item--active" onClick={() => dispatch(changeCity(location))} to={AppRoute.Main}>
           <span>{location}</span>
-        </a>
+        </Link>
       );
     default:
       return (
-        <a className="locations__item-link tabs__item" onClick={() => dispatch(changeCity(location))} href="#">
+        <Link className="locations__item-link tabs__item" onClick={() => dispatch(changeCity(location))} to={AppRoute.Main}>
           <span>{location}</span>
-        </a>
+        </Link>
       );
   }
 }

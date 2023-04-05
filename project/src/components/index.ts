@@ -13,4 +13,7 @@ export { default as LocationList } from './locations-list/locations-list';
 export { default as Location } from './location/location';
 export { default as PlaceSorting } from './place-sorting/place-sorting';
 export { default as RatingStars } from './rating-stars/rating-stars';
+export { default as LoadingScreen } from './loading-screen/loading-screen';
+export { default as Main } from './main/main';
+export { default as EmptyMain } from './empty-main/empty-main';
 

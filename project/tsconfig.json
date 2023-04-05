@@ -17,6 +17,9 @@
       ],
       "store": [
         "./store"
+      ],
+      "services": [
+        "./services"
       ]
     },
     "target": "es2020",
