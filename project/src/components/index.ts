@@ -14,4 +14,5 @@ export { default as Location } from './location/location';
 export { default as PlaceSorting } from './place-sorting/place-sorting';
 export { default as RatingStars } from './rating-stars/rating-stars';
 export { default as LoadingScreen } from './loading-screen/loading-screen';
+export { default as Main } from './main/main';
 
