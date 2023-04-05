@@ -4,14 +4,6 @@ type Props = {
   locations: string[];
 }
 
-{/* <h1 className="visually-hidden">Cities</h1>
-<div className="tabs">
-  <section className="locations container">
-    <LocationList locations={offerLocations}/>
-  </section>
-</div> */}
-
-
 export default function LocationList ({locations}: Props) {
   return (
     <>
