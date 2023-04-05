@@ -2,8 +2,6 @@ import { useAppSlector } from 'hooks/state';
 import { plural, offerLocations } from 'const';
 import { LocationList, PlaceSorting, OffersList, Map } from 'components';
 
-// const offerLocations: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldolf'];
-
 function getTextByCount(count: number, city: string): string {
   const pluralRules = plural.select(count);
   switch(pluralRules) {
@@ -23,14 +21,7 @@ export default function Main() {
 
   return (
     <main className="page__main page__main--index">
-      <h1 className="visually-hidden">Cities</h1>
-      <div className="tabs">
-        <section className="locations container">
-
-          <LocationList locations={offerLocations}/>
-
-        </section>
-      </div>
+      <LocationList locations={offerLocations}/>
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">

@@ -4,12 +4,7 @@ import { LocationList} from 'components';
 export default function EmptyMaino() {
   return (
     <main className="page__main page__main--index page__main--index-empty" style={{height: '100vh'}}>
-      <h1 className="visually-hidden">Cities</h1>
-      <div className="tabs">
-        <section className="locations container">
-          <LocationList locations={offerLocations}/>
-        </section>
-      </div>
+      <LocationList locations={offerLocations}/>
       <div className="cities">
         <div className="cities__places-container cities__places-container--empty container">
           <section className="cities__no-places">
