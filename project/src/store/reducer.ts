@@ -12,6 +12,7 @@ type InitialState = {
   allRooms: Offers;
   sorting: string;
   hoveredCard: number;
+  error: string | null;
 }
 
 const initialState: InitialState = {
@@ -20,7 +21,7 @@ const initialState: InitialState = {
   allRooms: [],
   sorting: DEFAULT_SORTING,
   hoveredCard: DEFAULT_SELECTED_CARD,
-
+  error: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
