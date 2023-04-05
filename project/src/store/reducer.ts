@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { City, Offers } from 'types/offers';
-import { changeCity, hovereCard, sortOffers, loadOffers } from './actions';
+import { changeCity, hovereCard, sortOffers, loadOffers, setRoomsLoadingStatus } from './actions';
 import { defaultCity, DEFAULT_SORTING, DEFAULT_SELECTED_CARD } from 'const';
 // import { offers } from 'mocks/offers';
 
@@ -12,6 +12,7 @@ type InitialState = {
   allRooms: Offers;
   sorting: string;
   hoveredCard: number;
+  isRoomsLoading: boolean;
   error: string | null;
 }
 
@@ -21,6 +22,7 @@ const initialState: InitialState = {
   allRooms: [],
   sorting: DEFAULT_SORTING,
   hoveredCard: DEFAULT_SELECTED_CARD,
+  isRoomsLoading: false,
   error: null,
 };
 
@@ -62,5 +64,8 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOffers, (state, actions) => {
       state.allRooms = actions.payload;
       state.currentRooms = state.allRooms.filter((offer) => offer.city.name === state.city.name);
+    })
+    .addCase(setRoomsLoadingStatus, (state, actions) => {
+      state.isRoomsLoading = actions.payload;
     });
 });

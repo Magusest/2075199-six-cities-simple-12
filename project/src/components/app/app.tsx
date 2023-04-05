@@ -2,8 +2,18 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from 'const';
 import { MainPage, LoginPage, OfferPage, NotFoundPage } from 'pages';
+import { LoadingScreen } from 'components';
+import { useAppSlector } from 'hooks/state';
 
 function App(): JSX.Element {
+  const isOffersLoading = useAppSlector(({isRoomsLoading}) => isRoomsLoading);
+
+  if (isOffersLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <HelmetProvider>
       <BrowserRouter>

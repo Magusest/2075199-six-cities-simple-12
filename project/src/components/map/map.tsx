@@ -75,6 +75,6 @@ export default function Map() {
   }, [currentCity, cityLocation, map, currentOffers, hoverCard]);
 
   return (
-    <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} ref={ref}></section>
+    <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} style={{height: '100vh'}} ref={ref}></section>
   );
 }
