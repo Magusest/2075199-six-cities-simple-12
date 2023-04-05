@@ -18,6 +18,7 @@ export default function Location ({location}: Props) {
   switch(location) {
     case (currentCity):
       return (
+        // Спросить как лучше всего избавитьс от ссылок
         <a className="locations__item-link tabs__item tabs__item--active" onClick={() => dispatch(changeCity(location))} href="#">
           <span>{location}</span>
         </a>
