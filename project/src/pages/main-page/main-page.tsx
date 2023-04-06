@@ -6,19 +6,14 @@ import { useAppSlector } from 'hooks/state';
 function MainPage(): JSX.Element {
   const offers = useAppSlector(({currentRooms}) => currentRooms);
 
-  if (offers.length === 0) {
-    return (
-      <>
-        <Header />
-        <EmptyMain />
-      </>
-    );
-  }
-
   return (
     <>
       <Header />
-      <Main />
+      {
+        offers.length === 0
+          ? <EmptyMain />
+          : <Main />
+      }
     </>
   );
 }
