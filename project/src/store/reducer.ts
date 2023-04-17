@@ -1,10 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { City, Offers } from 'types/offers';
-import { changeCity, hovereCard, sortOffers, loadOffers, setRoomsLoadingStatus } from './actions';
+import { changeCity, hovereCard, sortOffers, loadOffers, setRoomsLoadingStatus, setAuthorizationStatus, setUserData } from './actions';
 import { defaultCity, DEFAULT_SORTING, DEFAULT_SELECTED_CARD, AuthorizationStatus } from 'const';
-// import { offers } from 'mocks/offers';
+import { UserData } from 'types/user-data';
 
-// const {log} = console;
+const {log} = console;
 
 type InitialState = {
   city: City;
@@ -15,6 +15,7 @@ type InitialState = {
   isRoomsLoading: boolean;
   error: string | null;
   authorizationStatus: AuthorizationStatus;
+  userData: UserData;
 }
 
 const initialState: InitialState = {
@@ -26,6 +27,14 @@ const initialState: InitialState = {
   isRoomsLoading: false,
   error: null,
   authorizationStatus: AuthorizationStatus.Unknown,
+  userData: {
+    avatarUrl: '',
+    id: 1,
+    isPro: false,
+    name: '',
+    email: '',
+    token: '',
+  }
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -69,5 +78,12 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setRoomsLoadingStatus, (state, actions) => {
       state.isRoomsLoading = actions.payload;
+    })
+    .addCase(setAuthorizationStatus, (status, actions) => {
+      status.authorizationStatus = actions.payload;
+    })
+    .addCase(setUserData, (state, actions) => {
+      state.userData = actions.payload;
+      log(state.userData);
     });
 });

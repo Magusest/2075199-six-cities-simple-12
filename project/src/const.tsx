@@ -13,7 +13,7 @@ const APIRoute = {
 } as const;
 
 enum AuthorizationStatus {
-  NoAuthv = 'NO_AUTH',
+  NoAuth = 'NO_AUTH',
   Auth = 'AUTH',
   Unknown = 'UNKNOWN',
 }
