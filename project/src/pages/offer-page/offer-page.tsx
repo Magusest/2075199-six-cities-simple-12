@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSlector } from 'hooks/state';
 import { Offer } from 'types/offers';
+import { getCurrentOffer } from 'store/selectors';
 
 // const {log} = console;
 
@@ -13,7 +14,7 @@ function OfferPage(): JSX.Element {
 
   const [offer, setOffer] = useState<Offer>();
 
-  const currentOffers = useAppSlector(({currentRooms}) => currentRooms);
+  const currentOffers = useAppSlector(getCurrentOffer);
 
   useEffect(() => {
     setOffer(currentOffers.find((currentOffer) => currentOffer.id === Number(id)));

@@ -4,11 +4,12 @@ import { store } from 'store';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { checkAuthStatus } from 'store/api-actions';
+import { getAuthorithationStatus, getUserData } from 'store/selectors';
 
 export default function Authrizarion() {
 
-  const { email, avatarUrl} = useAppSlector((state) => state.userData);
-  const authorizationStatus = useAppSlector((state) => state.authorizationStatus);
+  const { email, avatarUrl} = useAppSlector(getUserData);
+  const authorizationStatus = useAppSlector(getAuthorithationStatus);
   // const dispatch = useAppDispatch();
 
   useEffect(() => {

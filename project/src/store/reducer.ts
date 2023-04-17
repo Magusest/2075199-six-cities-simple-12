@@ -8,11 +8,11 @@ const {log} = console;
 
 type InitialState = {
   city: City;
-  currentRooms: Offers;
-  allRooms: Offers;
+  currentOffers: Offers;
+  allOffers: Offers;
   sorting: string;
   hoveredCard: number;
-  isRoomsLoading: boolean;
+  isOffersLoading: boolean;
   error: string | null;
   authorizationStatus: AuthorizationStatus;
   userData: UserData;
@@ -20,11 +20,11 @@ type InitialState = {
 
 const initialState: InitialState = {
   city: defaultCity,
-  currentRooms: [],
-  allRooms: [],
+  currentOffers: [],
+  allOffers: [],
   sorting: DEFAULT_SORTING,
   hoveredCard: DEFAULT_SELECTED_CARD,
-  isRoomsLoading: false,
+  isOffersLoading: false,
   error: null,
   authorizationStatus: AuthorizationStatus.Unknown,
   userData: {
@@ -42,10 +42,10 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(changeCity, (state, actions) => {
       if (actions.payload) {
         state.city.name = actions.payload;
-        state.currentRooms = state.allRooms.filter((offer) => offer.city.name === actions.payload);
+        state.currentOffers = state.allOffers.filter((offer) => offer.city.name === actions.payload);
 
-        if (state.currentRooms.length !== 0) {
-          const room = state.currentRooms[0];
+        if (state.currentOffers.length !== 0) {
+          const room = state.currentOffers[0];
           state.city = room.city;
         }
       }
@@ -58,7 +58,7 @@ export const reducer = createReducer(initialState, (builder) => {
       const {checkedSorting} = actions.payload;
       state.sorting = checkedSorting;
 
-      state.currentRooms = state.currentRooms.sort((a, b) => {
+      state.currentOffers = state.currentOffers.sort((a, b) => {
         switch (state.sorting) {
           case 'Price: high to low':
             return b.price - a.price;
@@ -73,11 +73,11 @@ export const reducer = createReducer(initialState, (builder) => {
       );
     })
     .addCase(loadOffers, (state, actions) => {
-      state.allRooms = actions.payload;
-      state.currentRooms = state.allRooms.filter((offer) => offer.city.name === state.city.name);
+      state.allOffers = actions.payload;
+      state.currentOffers = state.allOffers.filter((offer) => offer.city.name === state.city.name);
     })
     .addCase(setRoomsLoadingStatus, (state, actions) => {
-      state.isRoomsLoading = actions.payload;
+      state.isOffersLoading = actions.payload;
     })
     .addCase(setAuthorizationStatus, (status, actions) => {
       status.authorizationStatus = actions.payload;

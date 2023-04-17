@@ -3,12 +3,13 @@ import { sortingOptions } from 'const';
 import { useAppDispatch, useAppSlector } from 'hooks/state';
 import { sortOffers } from 'store/actions';
 import { SortingOption } from 'types/sorting';
+import { getSorting } from 'store/selectors';
 
 // const {log} = console;
 
 export default function PlaceSorting() {
   const [isOpen, setIsOpen] = useState(false);
-  const selectedSorting = useAppSlector((state) => state.sorting);
+  const selectedSorting = useAppSlector(getSorting);
   const dispatch = useAppDispatch();
 
   const clickTypeHandler = (evt: SyntheticEvent<HTMLElement, MouseEvent>) => {

@@ -5,6 +5,7 @@ import { useMap } from 'hooks';
 import { useAppSlector } from 'hooks/state';
 import { AppRoute } from 'const';
 import { useLocation } from 'react-router-dom';
+import { getCurrentCity, getCurrentOffer, getHoverCard } from 'store/selectors';
 
 // const {log} = console;
 
@@ -23,9 +24,9 @@ const hoveredMarker = new Icon({
 
 export default function Map() {
 
-  const currentOffers = useAppSlector(({currentRooms}) => currentRooms);
-  const currentCity = useAppSlector(({city}) => city);
-  const hoverCard = useAppSlector(({hoveredCard}) => hoveredCard);
+  const currentOffers = useAppSlector(getCurrentOffer);
+  const currentCity = useAppSlector(getCurrentCity);
+  const hoverCard = useAppSlector(getHoverCard);
 
 
   const {pathname} = useLocation();
