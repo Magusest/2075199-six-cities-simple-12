@@ -12,6 +12,12 @@ const APIRoute = {
   Logout: '/logout',
 } as const;
 
+enum AuthorizationStatus {
+  NoAuthv = 'NO_AUTH',
+  Auth = 'AUTH',
+  Unknown = 'UNKNOWN',
+}
+
 const offerLocations: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldolf'];
 
 const defaultCity: City = {
@@ -39,6 +45,7 @@ const DEFAULT_SELECTED_CARD = -1;
 export {
   AppRoute,
   APIRoute,
+  AuthorizationStatus,
   offerLocations,
   defaultCity,
   sortingOptions,
