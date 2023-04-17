@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { City, Offers } from 'types/offers';
 import { changeCity, hovereCard, sortOffers, loadOffers, setRoomsLoadingStatus } from './actions';
-import { defaultCity, DEFAULT_SORTING, DEFAULT_SELECTED_CARD } from 'const';
+import { defaultCity, DEFAULT_SORTING, DEFAULT_SELECTED_CARD, AuthorizationStatus } from 'const';
 // import { offers } from 'mocks/offers';
 
 // const {log} = console;
@@ -14,6 +14,7 @@ type InitialState = {
   hoveredCard: number;
   isRoomsLoading: boolean;
   error: string | null;
+  authorizationStatus: AuthorizationStatus;
 }
 
 const initialState: InitialState = {
@@ -24,6 +25,7 @@ const initialState: InitialState = {
   hoveredCard: DEFAULT_SELECTED_CARD,
   isRoomsLoading: false,
   error: null,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
