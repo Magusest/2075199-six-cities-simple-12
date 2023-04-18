@@ -4,7 +4,9 @@ import {AppDispatch, State} from '../types/state.js';
 import { Offers } from 'types/offers.js';
 import { loadOffers, setAuthorizationStatus, setRoomsLoadingStatus, setUserData } from './actions';
 import {APIRoute, AuthorizationStatus} from '../const';
-import { UserData } from 'types/user-data.js';
+import { UserData } from 'types/user-data';
+import { AuthData } from 'types/auth-data';
+import Token from 'services/token';
 
 const {log} = console;
 
@@ -46,3 +48,39 @@ export const checkAuthStatus = createAsyncThunk<
       dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
     }
   });
+
+export const loginAction = createAsyncThunk<
+  void,
+  AuthData,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(
+  'user/login',
+  async ({ login: email, password }, { dispatch, extra: api }) => {
+    const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
+    Token.save(data.token);
+    dispatch(setUserData(data));
+    dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+  }
+);
+
+export const logoutAction = createAsyncThunk<
+  void,
+  undefined,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(
+  'user/login',
+  async (_arg, { dispatch, extra: api }) => {
+    await api.delete(APIRoute.Logout);
+    Token.drop();
+    dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
+  }
+);
+

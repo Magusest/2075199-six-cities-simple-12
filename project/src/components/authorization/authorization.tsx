@@ -1,16 +1,16 @@
 import { AppRoute, AuthorizationStatus } from 'const';
-import { useAppSlector } from 'hooks/state';
+import { useAppSlector, useAppDispatch } from 'hooks/state';
 import { store } from 'store';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { checkAuthStatus } from 'store/api-actions';
+import { checkAuthStatus, logoutAction } from 'store/api-actions';
 import { getAuthorithationStatus, getUserData } from 'store/selectors';
 
 export default function Authrizarion() {
 
   const { email, avatarUrl} = useAppSlector(getUserData);
   const authorizationStatus = useAppSlector(getAuthorithationStatus);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Unknown) {
@@ -43,9 +43,16 @@ export default function Authrizarion() {
               </div>
             </li>
             <li className="header__nav-item">
-              <a className="header__nav-link" href="#">
+              <Link
+                className="header__nav-link"
+                to={AppRoute.Main}
+                onClick={(event) => {
+                  event.preventDefault();
+                  dispatch(logoutAction());
+                }}
+              >
                 <span className="header__signout">Sign out</span>
-              </a>
+              </Link>
             </li>
           </ul>
         )}
