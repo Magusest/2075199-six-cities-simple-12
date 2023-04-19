@@ -3,8 +3,9 @@ import { Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from 'components';
 import { useAppDispatch, useAppSlector } from 'hooks/state';
-import { getAuthorithationStatus, getCurrentCity } from 'store/selectors';
-import { loginAction } from 'store/api-actions';
+import { getCurrentCity } from 'store/offers/selectors';
+import { getAuthorithationStatus } from 'store/user/selectors';
+import { loginAction } from 'store/user/api-actions';
 import { FormEvent } from 'react';
 
 function LoginPage() {

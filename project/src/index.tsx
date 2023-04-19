@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
 import { App } from 'components';
 import { store } from 'store';
-import { fetchOffer } from 'store/api-actions';
+import { fetchOffers } from 'store/offers/api-actions';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-store.dispatch(fetchOffer());
+store.dispatch(fetchOffers());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

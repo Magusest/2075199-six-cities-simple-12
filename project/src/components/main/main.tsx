@@ -1,7 +1,7 @@
 import { useAppSlector } from 'hooks/state';
 import { plural, offerLocations } from 'const';
 import { LocationList, PlaceSorting, OffersList, Map } from 'components';
-import { getCurrentCity, getCurrentOffer } from 'store/selectors';
+import { getCurrentCity, getCurrentOffer } from 'store/offers/selectors';
 
 function getTextByCount(count: number, city: string): string {
   const pluralRules = plural.select(count);

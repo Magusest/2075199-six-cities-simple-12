@@ -1,10 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { defaultCity, DEFAULT_SORTING, DEFAULT_SELECTED_CARD } from 'const';
 import { City, Offers } from 'types/offers';
-import { changeCity, hovereCard, sortOffers, loadOffers, setRoomsLoadingStatus, setAuthorizationStatus, setUserData } from './actions';
-import { defaultCity, DEFAULT_SORTING, DEFAULT_SELECTED_CARD, AuthorizationStatus } from 'const';
-import { UserData } from 'types/user-data';
-
-const {log} = console;
+import { changeCity, hovereCard, sortOffers, loadOffers, setRoomsLoadingStatus } from './actions';
 
 type InitialState = {
   city: City;
@@ -14,8 +11,6 @@ type InitialState = {
   hoveredCard: number;
   isOffersLoading: boolean;
   error: string | null;
-  authorizationStatus: AuthorizationStatus;
-  userData: UserData;
 }
 
 const initialState: InitialState = {
@@ -26,18 +21,9 @@ const initialState: InitialState = {
   hoveredCard: DEFAULT_SELECTED_CARD,
   isOffersLoading: false,
   error: null,
-  authorizationStatus: AuthorizationStatus.Unknown,
-  userData: {
-    avatarUrl: '',
-    id: 1,
-    isPro: false,
-    name: '',
-    email: '',
-    token: '',
-  }
 };
 
-export const reducer = createReducer(initialState, (builder) => {
+export const offersReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state, actions) => {
       if (actions.payload) {
@@ -78,12 +64,5 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setRoomsLoadingStatus, (state, actions) => {
       state.isOffersLoading = actions.payload;
-    })
-    .addCase(setAuthorizationStatus, (status, actions) => {
-      status.authorizationStatus = actions.payload;
-    })
-    .addCase(setUserData, (state, actions) => {
-      state.userData = actions.payload;
-      log(state.userData);
     });
 });

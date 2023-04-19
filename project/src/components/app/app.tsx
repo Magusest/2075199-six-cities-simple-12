@@ -3,7 +3,7 @@ import { AppRoute } from 'const';
 import { MainPage, LoginPage, OfferPage, NotFoundPage } from 'pages';
 import { LoadingScreen } from 'components';
 import { useAppSlector } from 'hooks/state';
-import { getOffersLoading } from 'store/selectors';
+import { getOffersLoading } from 'store/offers/selectors';
 
 function App(): JSX.Element {
   const isOffersLoading = useAppSlector(getOffersLoading);

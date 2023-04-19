@@ -3,12 +3,12 @@ import { useAppSlector, useAppDispatch } from 'hooks/state';
 import { store } from 'store';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { checkAuthStatus, logoutAction } from 'store/api-actions';
-import { getAuthorithationStatus, getUserData } from 'store/selectors';
+import { checkAuthStatus, logoutAction } from 'store/user/api-actions';
+import { getAuthorithationStatus, getUserData } from 'store/user/selectors';
 
 export default function Authrizarion() {
 
-  const { email, avatarUrl} = useAppSlector(getUserData);
+  const userData = useAppSlector(getUserData);
   const authorizationStatus = useAppSlector(getAuthorithationStatus);
   const dispatch = useAppDispatch();
 
@@ -38,8 +38,8 @@ export default function Authrizarion() {
           <ul className="header__nav-list">
             <li className="header__nav-item user">
               <div className="header__nav-profile">
-                <div className="header__avatar-wrapper user__avatar-wrapper" style={{backgroundImage: `url(${avatarUrl})`}}></div>
-                <span className="header__user-name user__name">{email}</span>
+                <div className="header__avatar-wrapper user__avatar-wrapper" style={{backgroundImage: `url(${ userData.avatarUrl })`}}></div>
+                <span className="header__user-name user__name">{ userData.email }</span>
               </div>
             </li>
             <li className="header__nav-item">

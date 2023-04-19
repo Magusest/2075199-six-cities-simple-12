@@ -5,7 +5,7 @@ import { useMap } from 'hooks';
 import { useAppSlector } from 'hooks/state';
 import { AppRoute } from 'const';
 import { useLocation } from 'react-router-dom';
-import { getCurrentCity, getCurrentOffer, getHoverCard } from 'store/selectors';
+import { getCurrentCity, getCurrentOffer, getHoverCard } from 'store/offers/selectors';
 
 // const {log} = console;
 

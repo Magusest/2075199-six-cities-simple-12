@@ -1,7 +1,7 @@
 import { PlaceCard } from 'components';
 import { useAppSlector } from 'hooks/state';
 import { useParams } from 'react-router-dom';
-import { getCurrentCity, getCurrentOffer } from 'store/selectors';
+import { getCurrentCity, getCurrentOffer } from 'store/offers/selectors';
 import { Offer } from 'types/offers';
 
 // const {log} = console;

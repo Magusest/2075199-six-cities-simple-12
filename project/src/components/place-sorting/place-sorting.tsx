@@ -1,9 +1,9 @@
 import { SyntheticEvent, useState } from 'react';
 import { sortingOptions } from 'const';
 import { useAppDispatch, useAppSlector } from 'hooks/state';
-import { sortOffers } from 'store/actions';
+import { sortOffers } from 'store/offers/actions';
 import { SortingOption } from 'types/sorting';
-import { getSorting } from 'store/selectors';
+import { getSorting } from 'store/offers/selectors';
 
 // const {log} = console;
 

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSlector } from 'hooks/state';
 import { Offer } from 'types/offers';
-import { getCurrentOffer } from 'store/selectors';
+import { getCurrentOffer } from 'store/offers/selectors';
 
 // const {log} = console;
 

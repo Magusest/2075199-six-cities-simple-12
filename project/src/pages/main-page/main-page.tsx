@@ -1,6 +1,6 @@
 import { EmptyMain, Header, Main } from 'components';
 import { useAppSlector } from 'hooks/state';
-import { getCurrentOffer } from 'store/selectors';
+import { getCurrentOffer } from 'store/offers/selectors';
 
 // const {log} = console;
 
