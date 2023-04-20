@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Offer } from 'types/offers';
 import { PremiumMark, RatingStars } from 'components';
-import { hovereCard } from 'store/actions';
+import { hovereCard } from 'store/offers/actions';
 
 // const {log} = console;
 
@@ -24,9 +24,13 @@ function PlaceCard({offer}: Props): JSX.Element {
   const {previewImage, price, title, type, id, isPremium, rating} = offer;
   const [cardActive, setCardActive] = useState<CardStateType>({ id: null });
 
-  const mouseHandler = (currentId: number) => {
+  const handlerCardEnter = (currentId: number) => {
     setCardActive({ id: currentId });
     dispatch(hovereCard(currentId));
+  };
+
+  const handlerCardLeave = () => {
+    dispatch(hovereCard(DEFAULT_SELECTED_CARD));
   };
 
   return (
@@ -36,8 +40,8 @@ function PlaceCard({offer}: Props): JSX.Element {
           ? `${AppRoute.Main === pathname ? 'cities__card' : 'near-places__card'} place-card place-card_active`
           : `${AppRoute.Main === pathname ? 'cities__card' : 'near-places__card'} place-card`
       }
-      onMouseEnter={() => mouseHandler(id)}
-      onMouseLeave={() => dispatch(hovereCard(DEFAULT_SELECTED_CARD))}
+      onMouseEnter={() => handlerCardEnter(id)}
+      onMouseLeave={handlerCardLeave}
     >
 
       {isPremium ? <PremiumMark className={'place-card__mark'}/> : null}
@@ -60,7 +64,7 @@ function PlaceCard({offer}: Props): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.Room}${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

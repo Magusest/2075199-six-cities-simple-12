@@ -1,19 +1,21 @@
 import { SyntheticEvent, useState } from 'react';
 import { sortingOptions } from 'const';
 import { useAppDispatch, useAppSlector } from 'hooks/state';
-import { sortOffers } from 'store/actions';
-import { SortingOption } from 'types/sorting';
+import { sortOffers } from 'store/offers/actions';
+// import { SortingOption } from 'types/sorting';
+import { getSorting } from 'store/offers/selectors';
 
-// const {log} = console;
+const {log} = console;
 
 export default function PlaceSorting() {
   const [isOpen, setIsOpen] = useState(false);
-  const selectedSorting = useAppSlector((state) => state.sorting);
+  const selectedSorting = useAppSlector(getSorting);
   const dispatch = useAppDispatch();
 
   const clickTypeHandler = (evt: SyntheticEvent<HTMLElement, MouseEvent>) => {
     const target = evt.target as HTMLElement;
-    dispatch(sortOffers({checkedSorting: target.textContent as SortingOption}));
+    dispatch(sortOffers({checkedSorting: target.textContent as string}));
+    log(target.textContent);
     setIsOpen(!isOpen);
   };
 
@@ -29,7 +31,7 @@ export default function PlaceSorting() {
       <ul className={`places__options places__options--custom ${isOpen ? 'places__options--opened' : ''}`}>
 
         {
-          sortingOptions.map((option) => (
+          Object.values(sortingOptions).map((option) => (
             <li
               className={`places__option ${option === selectedSorting ? 'places__option--active' : ''}`}
               tabIndex={0}

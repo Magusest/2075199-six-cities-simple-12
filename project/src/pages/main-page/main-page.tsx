@@ -1,24 +1,20 @@
 import { EmptyMain, Header, Main } from 'components';
 import { useAppSlector } from 'hooks/state';
+import { getCurrentOffer } from 'store/offers/selectors';
 
 // const {log} = console;
 
 function MainPage(): JSX.Element {
-  const offers = useAppSlector(({currentRooms}) => currentRooms);
-
-  if (offers.length === 0) {
-    return (
-      <>
-        <Header />
-        <EmptyMain />
-      </>
-    );
-  }
+  const offers = useAppSlector(getCurrentOffer);
 
   return (
     <>
       <Header />
-      <Main />
+      {
+        offers.length === 0
+          ? <EmptyMain />
+          : <Main />
+      }
     </>
   );
 }

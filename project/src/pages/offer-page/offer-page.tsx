@@ -1,29 +1,42 @@
 import { Helmet } from 'react-helmet-async';
+import { NotFoundPage } from 'pages';
 import { Header, PremiumMark, ReviewsForm, ReviewsList, Map, OffersList, RatingStars } from 'components';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppSlector } from 'hooks/state';
-import { Offer } from 'types/offers';
+import { useAppDispatch, useAppSlector } from 'hooks/state';
+import { getChosenOffer } from 'store/offers/selectors';
+import { fetchChosenOffer } from 'store/offers/api-actions';
 
 // const {log} = console;
+
+// Сделать лоудер при подгрузке данных с сервера!!!
+
+const ProTag = () =>
+  (
+    <span className="property__user-status">
+      Pro
+    </span>
+  );
 
 function OfferPage(): JSX.Element {
 
   const { id } = useParams();
+  const chosenOffer = useAppSlector(getChosenOffer);
 
-  const [offer, setOffer] = useState<Offer>();
-
-  const currentOffers = useAppSlector(({currentRooms}) => currentRooms);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setOffer(currentOffers.find((currentOffer) => currentOffer.id === Number(id)));
-  }, [id]);
+    if (id) {
+      dispatch(fetchChosenOffer(Number(id)));
+    }
+  }, [dispatch ,id]);
 
-  if (!offer) {
-    return <>Loading...</>;
+  if (!chosenOffer) {
+    return <NotFoundPage />;
   }
 
-  const {images, title, rating, type, bedrooms, maxAdults, goods, price, isPremium} = offer;
+  const {images, title, rating, type, bedrooms, maxAdults, goods, price, isPremium, host, description } = chosenOffer;
+  const {name, avatarUrl, isPro} = host;
 
   return (
     <>
@@ -90,22 +103,20 @@ function OfferPage(): JSX.Element {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                  <div className={`property__avatar-wrapper user__avatar-wrapper ${isPro ? 'property__avatar-wrapper--pro' : ''}`}>
+                    <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    Angelina
+                    {name}
                   </span>
-                  <span className="property__user-status">
+                  {isPro ? <ProTag /> : null}
+                  {/* <span className="property__user-status">
                     Pro
-                  </span>
+                  </span> */}
                 </div>
                 <div className="property__description">
                   <p className="property__text">
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                  </p>
-                  <p className="property__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                    {description}
                   </p>
                 </div>
               </div>

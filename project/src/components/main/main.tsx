@@ -1,6 +1,7 @@
 import { useAppSlector } from 'hooks/state';
 import { plural, offerLocations } from 'const';
 import { LocationList, PlaceSorting, OffersList, Map } from 'components';
+import { getCurrentCity, getCurrentOffer } from 'store/offers/selectors';
 
 function getTextByCount(count: number, city: string): string {
   const pluralRules = plural.select(count);
@@ -13,10 +14,10 @@ function getTextByCount(count: number, city: string): string {
 }
 
 export default function Main() {
-  const countOffers = useAppSlector(({currentRooms}) => currentRooms.length);
-  const curCity = useAppSlector(({city}) => city.name);
+  const countOffers = useAppSlector(getCurrentOffer).length;
+  const currentCity = useAppSlector(getCurrentCity);
 
-  const plasesText = getTextByCount(countOffers, curCity);
+  const plasesText = getTextByCount(countOffers, currentCity.name);
 
 
   return (

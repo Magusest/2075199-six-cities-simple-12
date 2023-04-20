@@ -12,6 +12,12 @@ const APIRoute = {
   Logout: '/logout',
 } as const;
 
+enum AuthorizationStatus {
+  NoAuth = 'NO_AUTH',
+  Auth = 'AUTH',
+  Unknown = 'UNKNOWN',
+}
+
 const offerLocations: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldolf'];
 
 const defaultCity: City = {
@@ -23,12 +29,12 @@ const defaultCity: City = {
   'name': 'Paris'
 };
 
-const sortingOptions = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first',
-];
+const sortingOptions = {
+  default: 'Popular',
+  lowToHigh: 'Price: low to high',
+  HightToLow: 'Price: high to low',
+  raitedTop: 'Top rated first',
+};
 
 const DEFAULT_SORTING = 'Popular';
 
@@ -39,6 +45,7 @@ const DEFAULT_SELECTED_CARD = -1;
 export {
   AppRoute,
   APIRoute,
+  AuthorizationStatus,
   offerLocations,
   defaultCity,
   sortingOptions,
