@@ -64,7 +64,7 @@ function PlaceCard({offer}: Props): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.Room}${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
