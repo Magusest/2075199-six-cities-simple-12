@@ -10,6 +10,7 @@ const APIRoute = {
   Offers: '/hotels',
   Login: '/login',
   Logout: '/logout',
+  Comments: '/comments',
 } as const;
 
 enum AuthorizationStatus {
