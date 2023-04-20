@@ -3,7 +3,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {APIRoute} from 'const';
 import {AppDispatch, State} from 'types/state';
 import { Offers, Offer } from 'types/offers.js';
-import { loadChosenOffer, loadOffers, setRoomsLoadingStatus } from './actions';
+import { loadChosenOffer, loadOffers, initialLoading } from './actions';
 
 export const fetchOffers = createAsyncThunk<
   void,
@@ -16,9 +16,8 @@ export const fetchOffers = createAsyncThunk<
 >(
   'data/fetchOffers',
   async (_arg, {dispatch, extra: api}) => {
-    dispatch(setRoomsLoadingStatus(true));
+    dispatch(initialLoading());
     const { data } = await api.get<Offers>(APIRoute.Offers);
-    dispatch(setRoomsLoadingStatus(false));
     dispatch(loadOffers(data));
 
   }

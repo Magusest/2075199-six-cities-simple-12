@@ -29,12 +29,12 @@ const defaultCity: City = {
   'name': 'Paris'
 };
 
-const sortingOptions = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first',
-];
+const sortingOptions = {
+  default: 'Popular',
+  lowToHigh: 'Price: low to high',
+  HightToLow: 'Price: high to low',
+  raitedTop: 'Top rated first',
+};
 
 const DEFAULT_SORTING = 'Popular';
 

@@ -9,6 +9,8 @@ import { fetchChosenOffer } from 'store/offers/api-actions';
 
 // const {log} = console;
 
+// Сделать лоудер при подгрузке данных с сервера!!!
+
 const ProTag = () =>
   (
     <span className="property__user-status">
