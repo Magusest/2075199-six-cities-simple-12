@@ -8,4 +8,6 @@ export const getSorting = (state: State) => state.offers.sorting;
 
 export const getChosenOffer = (state: State) => state.offers.chosenOffer.offer;
 export const getNearbyOffers = (state: State) => state.offers.chosenOffer.nearbyOffers;
+export const getOfferComments = (state: State) => state.offers.chosenOffer.comments;
+
 

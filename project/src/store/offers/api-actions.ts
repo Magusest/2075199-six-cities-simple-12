@@ -46,17 +46,3 @@ export const fetchChosenOffer = createAsyncThunk<
     dispatch(loadOfferComments(comments.data));
   }
 );
-
-// export const fetchTargetOfferAction = createAsyncThunk<
-//   [OfferItem, OfferList, ReviewList],
-//   OfferItem['id'],
-//   { extra: AxiosInstance }
-// >('data/fetchTargetOffer', async (hotelId, { extra: api }) => {
-//   const [offer, nearbyOffers, comments] = await Promise.all([
-//     api.get<OfferItem>(`${APIRoute.Offers}/${hotelId}`),
-//     api.get<OfferList>(`${APIRoute.Offers}/${hotelId}/nearby`),
-//     api.get<ReviewList>(`${APIRoute.Comments}/${hotelId}`),
-//   ]);
-
-//   return [offer.data, nearbyOffers.data, comments.data];
-// });

@@ -91,10 +91,8 @@ export const offersReducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadNearbyOffer, (state, actions) => {
       state.chosenOffer.nearbyOffers = actions.payload;
-      log(state.chosenOffer.nearbyOffers);
     })
     .addCase(loadOfferComments, (state, actions) => {
       state.chosenOffer.comments = actions.payload;
-      log(state.chosenOffer.comments);
     });
 });

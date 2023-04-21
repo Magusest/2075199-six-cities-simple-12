@@ -1,5 +1,5 @@
 import { useAppDispatch } from 'hooks/state';
-import { AppRoute, DEFAULT_SELECTED_CARD } from 'const';
+import { AppRoute, Classes, DEFAULT_SELECTED_CARD } from 'const';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Offer } from 'types/offers';
@@ -58,11 +58,7 @@ function PlaceCard({offer}: Props): JSX.Element {
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            < RatingStars rating={rating} />
-          </div>
-        </div>
+        <RatingStars rating={rating} className={Classes.Main}/>
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Room}${id}`}>{title}</Link>
         </h2>

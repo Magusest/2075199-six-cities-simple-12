@@ -43,6 +43,12 @@ const plural = new Intl.PluralRules('eu-US');
 
 const DEFAULT_SELECTED_CARD = -1;
 
+const Classes = {
+  Main: 'main',
+  Property: 'property',
+  Review: 'review',
+} as const;
+
 export {
   AppRoute,
   APIRoute,
@@ -53,4 +59,5 @@ export {
   DEFAULT_SORTING,
   plural,
   DEFAULT_SELECTED_CARD,
+  Classes,
 };

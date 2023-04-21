@@ -7,7 +7,7 @@ export { default as ReviewsForm } from './reviews-form/reviews-form';
 export { default as Authtorization } from './authorization/authorization';
 export { default as Map } from './map/map';
 export { default as ReviewsList } from './reviews-list/reviews-list';
-export { default as Review } from './review/review';
+export { default as Comment } from './comment/comment';
 export { default as PremiumMark } from './premium/premium';
 export { default as LocationList } from './locations-list/locations-list';
 export { default as Location } from './location/location';

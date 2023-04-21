@@ -1,13 +1,14 @@
 import { Helmet } from 'react-helmet-async';
-import { NotFoundPage } from 'pages';
-import { Header, PremiumMark, ReviewsForm, ReviewsList, Map, OffersList, RatingStars } from 'components';
+// import { NotFoundPage } from 'pages';
+import { Header, PremiumMark, ReviewsForm, ReviewsList, Map, OffersList, RatingStars, LoadingScreen } from 'components';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSlector } from 'hooks/state';
-import { getChosenOffer } from 'store/offers/selectors';
+import { getChosenOffer, getNearbyOffers, getOfferComments } from 'store/offers/selectors';
 import { fetchChosenOffer } from 'store/offers/api-actions';
+import { Classes } from 'const';
 
-// const {log} = console;
+const {log} = console;
 
 // Сделать лоудер при подгрузке данных с сервера!!!
 
@@ -21,7 +22,11 @@ const ProTag = () =>
 function OfferPage(): JSX.Element {
 
   const { id } = useParams();
+  const nearbyOffers = useAppSlector(getNearbyOffers);
   const chosenOffer = useAppSlector(getChosenOffer);
+  const comment = useAppSlector(getOfferComments);
+
+  log(comment);
 
   const dispatch = useAppDispatch();
 
@@ -32,7 +37,7 @@ function OfferPage(): JSX.Element {
   }, [dispatch ,id]);
 
   if (!chosenOffer) {
-    return <NotFoundPage />;
+    return <LoadingScreen />;
   }
 
   const {images, title, rating, type, bedrooms, maxAdults, goods, price, isPremium, host, description } = chosenOffer;
@@ -67,12 +72,7 @@ function OfferPage(): JSX.Element {
                   {title}
                 </h1>
               </div>
-              <div className="property__rating rating">
-                <div className="property__stars rating__stars">
-                  < RatingStars rating={rating} />
-                </div>
-                <span className="property__rating-value rating__value">{rating}</span>
-              </div>
+              <RatingStars rating={rating} className={Classes.Property}/>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
                   {type}
@@ -110,9 +110,6 @@ function OfferPage(): JSX.Element {
                     {name}
                   </span>
                   {isPro ? <ProTag /> : null}
-                  {/* <span className="property__user-status">
-                    Pro
-                  </span> */}
                 </div>
                 <div className="property__description">
                   <p className="property__text">
@@ -131,7 +128,7 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
 
-          <Map />
+          <Map offers={nearbyOffers}/>
 
         </section>
         <div className="container">
@@ -139,7 +136,7 @@ function OfferPage(): JSX.Element {
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
 
-              <OffersList />
+              <OffersList offers={nearbyOffers} />
 
             </div>
           </section>
