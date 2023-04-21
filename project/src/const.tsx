@@ -4,6 +4,7 @@ const AppRoute = {
   Main: '/',
   Login: '/login',
   Room: '/offer/',
+  NotFound: '/*'
 } as const;
 
 const APIRoute = {

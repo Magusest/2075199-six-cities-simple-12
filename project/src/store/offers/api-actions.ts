@@ -41,6 +41,7 @@ export const fetchChosenOffer = createAsyncThunk<
       api.get<Offers>(`${APIRoute.Offers}/${cardId}/nearby`),
       api.get<Reviews>(`${APIRoute.Comments}/${cardId}`)
     ]);
+    dispatch(initialLoading());
     dispatch(loadChosenOffer(offer.data));
     dispatch(loadNearbyOffer(nearbyOffers.data));
     dispatch(loadOfferComments(comments.data));

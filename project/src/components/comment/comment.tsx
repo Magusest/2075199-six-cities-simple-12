@@ -3,12 +3,26 @@ import { Classes } from 'const';
 import { Review } from 'types/reviews';
 
 type Props = {
-  comment: Review;
+  reviewData: Review;
 }
 
-export default function Comment ({comment}: Props) {
-  const {user, rating} = comment;
+function getDate(dateValue: string): string[] {
+  const date = new Date(dateValue);
 
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  const dateProperty = [year, month, day].join('-');
+
+  const dateText = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+
+  return [dateProperty, dateText];
+}
+
+export default function Comment ({reviewData}: Props) {
+  const {user, rating, date, comment} = reviewData;
+  const [machineDate, humanDate] = getDate(date);
   return (
     <>
       <div className="reviews__user user">
@@ -21,21 +35,10 @@ export default function Comment ({comment}: Props) {
       </div>
       <div className="reviews__info">
         <RatingStars rating={rating} className={Classes.Review} />
-        {/* <div className="reviews__rating rating">
-          <div className="reviews__stars rating__stars">
-            <span
-              style={{
-                width: '20%',
-              }}
-            >
-            </span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div> */}
         <p className="reviews__text">
-          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+          {comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        <time className="reviews__time" dateTime={machineDate}>{humanDate}</time>
       </div>
     </>
   );

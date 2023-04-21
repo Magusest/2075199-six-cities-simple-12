@@ -1,15 +1,16 @@
 import { Comment } from 'components';
-import { useAppSlector } from 'hooks/state';
-import { getOfferComments } from 'store/offers/selectors';
+import { Reviews } from 'types/reviews';
 
-export default function ReviewsList() {
-  const comments = useAppSlector(getOfferComments);
+type Props = {
+  comments: Reviews;
+}
 
+export default function ReviewsList({comments}: Props) {
   return (
     <ul className="reviews__list">
       {comments.map((comment) => (
         <li className="reviews__item" key={comment.id}>
-          <Comment comment={comment}/>
+          <Comment reviewData={comment}/>
         </li>
       ))}
     </ul>

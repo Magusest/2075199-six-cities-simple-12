@@ -10,14 +10,14 @@ type InitialState = {
   offers: {
     allOffers: Offers;
     currentOffers: Offers;
-    isLoading: boolean;
   };
   chosenOffer: {
     offer: Offer | null;
     nearbyOffers: Offers;
     comments: Reviews;
-    isLoading: boolean;
+    isError: boolean;
   };
+  isLoading: boolean;
   city: City;
   hoveredCard: number;
   sorting: string;
@@ -28,14 +28,15 @@ const initialState: InitialState = {
   offers: {
     allOffers: [],
     currentOffers: [],
-    isLoading: false,
   },
   chosenOffer: {
     offer: null,
     nearbyOffers: [],
     comments: [],
-    isLoading: false,
+    isError: false,
+
   },
+  isLoading: false,
   city: defaultCity,
   sorting: DEFAULT_SORTING,
   hoveredCard: DEFAULT_SELECTED_CARD,
@@ -59,12 +60,13 @@ const sortingOffers = (type: string, sOffers: Offers)=> {
 export const offersReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(initialLoading, (state) => {
-      state.offers.isLoading = true;
+      state.isLoading = true;
+      // log(state.isLoading);
     })
     .addCase(loadOffers, (state, actions) => {
-      state.offers.isLoading = false;
       state.offers.allOffers = actions.payload;
       state.offers.currentOffers = state.offers.allOffers.filter((offer) => offer.city.name === state.city.name);
+      state.isLoading = false;
     })
     .addCase(changeCity, (state, actions) => {
       if (actions.payload) {
@@ -87,12 +89,25 @@ export const offersReducer = createReducer(initialState, (builder) => {
       sortingOffers(state.sorting, state.offers.currentOffers);
     })
     .addCase(loadChosenOffer, (state, action) => {
-      state.chosenOffer.offer = action.payload;
+      if (action.payload) {
+        state.chosenOffer.offer = action.payload;
+        state.isLoading = false;
+      }
+
+      // state.chosenOffer.isError = true;
     })
     .addCase(loadNearbyOffer, (state, actions) => {
-      state.chosenOffer.nearbyOffers = actions.payload;
+      if (actions.payload) {
+        state.isLoading = false;
+        state.chosenOffer.nearbyOffers = actions.payload;
+      }
+      // state.chosenOffer.isError = true;
     })
     .addCase(loadOfferComments, (state, actions) => {
-      state.chosenOffer.comments = actions.payload;
+      if (actions.payload) {
+        state.isLoading = false;
+        state.chosenOffer.comments = actions.payload;
+      }
+      state.chosenOffer.isError = true;
     });
 });

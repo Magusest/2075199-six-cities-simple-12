@@ -1,14 +1,15 @@
 import { Helmet } from 'react-helmet-async';
 // import { NotFoundPage } from 'pages';
-import { Header, PremiumMark, ReviewsForm, ReviewsList, Map, OffersList, RatingStars, LoadingScreen } from 'components';
+import { Header, PremiumMark, Map, OffersList, RatingStars, LoadingScreen, ReviewsSection } from 'components';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSlector } from 'hooks/state';
-import { getChosenOffer, getNearbyOffers, getOfferComments } from 'store/offers/selectors';
+import { getChosenOffer, getLoadingStatus, getNearbyOffers } from 'store/offers/selectors';
 import { fetchChosenOffer } from 'store/offers/api-actions';
-import { Classes } from 'const';
+import { AppRoute, Classes } from 'const';
 
-const {log} = console;
+
+// const {log} = console;
 
 // Сделать лоудер при подгрузке данных с сервера!!!
 
@@ -24,9 +25,7 @@ function OfferPage(): JSX.Element {
   const { id } = useParams();
   const nearbyOffers = useAppSlector(getNearbyOffers);
   const chosenOffer = useAppSlector(getChosenOffer);
-  const comment = useAppSlector(getOfferComments);
-
-  log(comment);
+  const isLoading = useAppSlector(getLoadingStatus);
 
   const dispatch = useAppDispatch();
 
@@ -36,7 +35,12 @@ function OfferPage(): JSX.Element {
     }
   }, [dispatch ,id]);
 
-  if (!chosenOffer) {
+  // Проблема с перенаправлением по несуществующему адресу
+  if (!chosenOffer || !nearbyOffers) {
+    return <Navigate to={AppRoute.NotFound} />;
+  }
+
+  if (isLoading) {
     return <LoadingScreen />;
   }
 
@@ -117,14 +121,7 @@ function OfferPage(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-
-                <ReviewsList />
-
-                <ReviewsForm />
-
-              </section>
+              <ReviewsSection />
             </div>
           </div>
 
