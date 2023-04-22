@@ -2,11 +2,12 @@ import { Helmet } from 'react-helmet-async';
 // import { NotFoundPage } from 'pages';
 import { Header, PremiumMark, Map, OffersList, RatingStars, LoadingScreen, ReviewsSection } from 'components';
 import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSlector } from 'hooks/state';
 import { getChosenOffer, getLoadingStatus, getNearbyOffers } from 'store/offers/selectors';
 import { fetchChosenOffer } from 'store/offers/api-actions';
-import { AppRoute, Classes } from 'const';
+import { Classes } from 'const';
+import NotFoundPage from 'pages/not-found-page/not-found-page';
 
 
 // const {log} = console;
@@ -37,7 +38,7 @@ function OfferPage(): JSX.Element {
 
   // Проблема с перенаправлением по несуществующему адресу
   if (!chosenOffer || !nearbyOffers) {
-    return <Navigate to={AppRoute.NotFound} />;
+    return <NotFoundPage />;
   }
 
   if (isLoading) {
@@ -121,7 +122,7 @@ function OfferPage(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <ReviewsSection />
+              <ReviewsSection offerId={chosenOffer.id}/>
             </div>
           </div>
 

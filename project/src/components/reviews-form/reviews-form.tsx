@@ -1,48 +1,55 @@
-import { ChangeEvent, Fragment, useState } from 'react';
+import { useAppDispatch } from 'hooks/state';
+import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { sendReviewAction } from 'store/offers/api-actions';
 import { raitingRates } from './utils';
 
-// const {log} = console;
+const MIN_COMMENT_LENGTH = 50;
+const MAX_COMMENT_LENGTH = 300;
 
-export default function ReviewsForm () {
-  const [formData, setFormData] = useState({
+type Props = {
+  offerId: number;
+}
+
+type FormData = {
+  rating: string;
+  review: string;
+}
+
+export default function ReviewsForm ({offerId}: Props) {
+  const dispatch = useAppDispatch();
+  const [formData, setFormData] = useState<FormData>({
     rating: '',
     review: '',
   });
 
   const {rating, review} = formData;
 
-  //  Оценка валидности формы.
-  //  Форму можно отправить если:
-  //  1) Пользователь поставил оценку и оставил полке отзыва пустым.
-  //  2) Еслт пользователь оставил оценку и написал отзыв не менее 50 знаков и не более 300.
-
   const isValidForm = () => {
-    if (rating !== '') {
-      if (review === '') {
-        return true;
-      } if (review.length > 0 && review.length <= 50) {
-        return false;
-      } if (review.length < 300) {
-        return true;
-      }
-    }
+    const isValidText = review.length > MIN_COMMENT_LENGTH && review.length < MAX_COMMENT_LENGTH;
+    const isRated = rating !== '';
 
-    return false;
+    return isValidText && isRated;
   };
 
   const changeHandler = (evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    const {name, value} = evt.target;
-    setFormData({...formData, [name]: value});
+    setFormData((prev) => ({...prev, [evt.target.name]: evt.target.value}));
+  };
+
+  const submitHandler = (evt: FormEvent) => {
+    evt.preventDefault();
+    const payload = {...formData, offerId};
+    dispatch(sendReviewAction(payload));
+    setFormData({ rating: '', review: ''});
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" onSubmit={submitHandler}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {raitingRates.map(({title, value}) =>
           (
             <Fragment key={title}>
-              <input className="form__rating-input visually-hidden" onChange={changeHandler} name="rating" value={value} id={`${value}-stars`} type="radio"/>
+              <input className="form__rating-input visually-hidden" onChange={changeHandler} name="rating" value={value} id={`${value}-stars`} checked={formData.rating === value} type="radio"/>
               <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
                 <svg className="form__star-image" width="37" height="33">
                   <use xlinkHref="#icon-star"></use>

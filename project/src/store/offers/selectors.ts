@@ -11,5 +11,3 @@ export const getChosenOffer = (state: State) => state.offers.chosenOffer.offer;
 export const getNearbyOffers = (state: State) => state.offers.chosenOffer.nearbyOffers;
 export const getOfferComments = (state: State) => state.offers.chosenOffer.comments;
 export const getErrorStatus = (state: State) => state.offers.chosenOffer.isError;
-
-

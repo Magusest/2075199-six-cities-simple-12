@@ -4,7 +4,7 @@ import {APIRoute} from 'const';
 import {AppDispatch, State} from 'types/state';
 import { Offers, Offer } from 'types/offers.js';
 import { loadChosenOffer, loadOffers, initialLoading, loadNearbyOffer, loadOfferComments } from './actions';
-import { Reviews } from 'types/reviews';
+import { ReviewData, Reviews } from 'types/reviews';
 
 export const fetchOffers = createAsyncThunk<
   void,
@@ -23,7 +23,6 @@ export const fetchOffers = createAsyncThunk<
 
   }
 );
-
 
 export const fetchChosenOffer = createAsyncThunk<
   void,
@@ -45,5 +44,27 @@ export const fetchChosenOffer = createAsyncThunk<
     dispatch(loadChosenOffer(offer.data));
     dispatch(loadNearbyOffer(nearbyOffers.data));
     dispatch(loadOfferComments(comments.data));
+  }
+);
+
+export const sendReviewAction = createAsyncThunk<
+  void,
+  {
+    rating: ReviewData['rating'];
+    review: ReviewData['review'];
+    offerId: Offer['id'];
+  },
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(
+  'data/sendReviewAction',
+  async (
+    {rating, review: comment, offerId: cardId},{dispatch, extra: api}
+  ) => {
+    const { data } = await api.post<Reviews>(`${APIRoute.Comments}/${cardId}`, {rating, comment});
+    dispatch(loadOfferComments(data));
   }
 );

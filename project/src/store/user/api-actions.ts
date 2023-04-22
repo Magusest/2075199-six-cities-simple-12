@@ -22,7 +22,6 @@ export const checkAuthStatus = createAsyncThunk<
     try {
       const { data } = await api.get<UserData>(APIRoute.Login);
       dispatch(setUserData(data));
-      dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
     } catch {
       dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
     }

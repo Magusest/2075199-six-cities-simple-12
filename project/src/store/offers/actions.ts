@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { Offer, Offers } from 'types/offers';
-import { Reviews } from 'types/reviews';
+import { Review, Reviews } from 'types/reviews';
 
 
 export const updateOffers = createAction('offers/updateOffers');
@@ -14,4 +14,4 @@ export const loadChosenOffer = createAction<Offer>('offer/loadChosenOffer');
 export const loadNearbyOffer = createAction<Offers>('offer/loadNearbyOffer');
 export const loadOfferComments = createAction<Reviews>('offer/loadOfferComment');
 
-
+export const sendNewComment = createAction<Review>('offer/loadOfferComment');

@@ -94,14 +94,14 @@ export const offersReducer = createReducer(initialState, (builder) => {
         state.isLoading = false;
       }
 
-      // state.chosenOffer.isError = true;
+      state.chosenOffer.isError = true;
     })
     .addCase(loadNearbyOffer, (state, actions) => {
       if (actions.payload) {
         state.isLoading = false;
         state.chosenOffer.nearbyOffers = actions.payload;
       }
-      // state.chosenOffer.isError = true;
+      state.chosenOffer.isError = true;
     })
     .addCase(loadOfferComments, (state, actions) => {
       if (actions.payload) {
