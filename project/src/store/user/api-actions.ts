@@ -27,7 +27,6 @@ export const checkAuthStatus = createAsyncThunk<
     }
   });
 
-// Вопрос! При загрузке страницы в консоль попадает ошибка 401.
 export const loginAction = createAsyncThunk<
   void,
   AuthData,

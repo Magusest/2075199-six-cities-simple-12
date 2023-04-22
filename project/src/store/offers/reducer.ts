@@ -89,25 +89,14 @@ export const offersReducer = createReducer(initialState, (builder) => {
       sortingOffers(state.sorting, state.offers.currentOffers);
     })
     .addCase(loadChosenOffer, (state, action) => {
-      if (action.payload) {
-        state.chosenOffer.offer = action.payload;
-        state.isLoading = false;
-      }
-
-      state.chosenOffer.isError = true;
+      state.chosenOffer.offer = action.payload;
+      state.isLoading = false;
+      log('fetchOffer');
     })
     .addCase(loadNearbyOffer, (state, actions) => {
-      if (actions.payload) {
-        state.isLoading = false;
-        state.chosenOffer.nearbyOffers = actions.payload;
-      }
-      state.chosenOffer.isError = true;
+      state.chosenOffer.nearbyOffers = actions.payload;
     })
     .addCase(loadOfferComments, (state, actions) => {
-      if (actions.payload) {
-        state.isLoading = false;
-        state.chosenOffer.comments = actions.payload;
-      }
-      state.chosenOffer.isError = true;
+      state.chosenOffer.comments = actions.payload;
     });
 });

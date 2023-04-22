@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-// import { NotFoundPage } from 'pages';
+import { NotFoundPage } from 'pages';
 import { Header, PremiumMark, Map, OffersList, RatingStars, LoadingScreen, ReviewsSection } from 'components';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSlector } from 'hooks/state';
 import { getChosenOffer, getLoadingStatus, getNearbyOffers } from 'store/offers/selectors';
 import { fetchChosenOffer } from 'store/offers/api-actions';
 import { Classes } from 'const';
-import NotFoundPage from 'pages/not-found-page/not-found-page';
 
 
 // const {log} = console;
@@ -36,13 +35,8 @@ function OfferPage(): JSX.Element {
     }
   }, [dispatch ,id]);
 
-  // Проблема с перенаправлением по несуществующему адресу
-  if (!chosenOffer || !nearbyOffers) {
+  if (!chosenOffer || isLoading) {
     return <NotFoundPage />;
-  }
-
-  if (isLoading) {
-    return <LoadingScreen />;
   }
 
   const {images, title, rating, type, bedrooms, maxAdults, goods, price, isPremium, host, description } = chosenOffer;
