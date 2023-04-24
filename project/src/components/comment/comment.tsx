@@ -1,5 +1,5 @@
 import RatingStars from 'components/rating-stars/rating-stars';
-import { Classes } from 'const';
+import { PrefixCls } from 'const';
 import { Review } from 'types/reviews';
 
 type Props = {
@@ -34,7 +34,7 @@ export default function Comment ({reviewData}: Props) {
         </span>
       </div>
       <div className="reviews__info">
-        <RatingStars rating={rating} className={Classes.Review} />
+        <RatingStars rating={rating} classPrefx={PrefixCls.Review} />
         <p className="reviews__text">
           {comment}
         </p>

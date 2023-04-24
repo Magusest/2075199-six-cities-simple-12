@@ -1,12 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 import { NotFoundPage } from 'pages';
-import { Header, PremiumMark, Map, OffersList, RatingStars, LoadingScreen, ReviewsSection } from 'components';
+import { Header, PremiumMark, Map, OffersList, RatingStars, ReviewsSection } from 'components';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSlector } from 'hooks/state';
-import { getChosenOffer, getLoadingStatus, getNearbyOffers } from 'store/offers/selectors';
+import { getChosenOffer, getNearbyOffers } from 'store/offers/selectors';
 import { fetchChosenOffer } from 'store/offers/api-actions';
-import { Classes } from 'const';
+import { PrefixCls } from 'const';
 
 
 // const {log} = console;
@@ -25,7 +25,6 @@ function OfferPage(): JSX.Element {
   const { id } = useParams();
   const nearbyOffers = useAppSlector(getNearbyOffers);
   const chosenOffer = useAppSlector(getChosenOffer);
-  const isLoading = useAppSlector(getLoadingStatus);
 
   const dispatch = useAppDispatch();
 
@@ -35,7 +34,7 @@ function OfferPage(): JSX.Element {
     }
   }, [dispatch ,id]);
 
-  if (!chosenOffer || isLoading) {
+  if (!chosenOffer) {
     return <NotFoundPage />;
   }
 
@@ -71,7 +70,7 @@ function OfferPage(): JSX.Element {
                   {title}
                 </h1>
               </div>
-              <RatingStars rating={rating} className={Classes.Property}/>
+              <RatingStars rating={rating} classPrefx={PrefixCls.Property}/>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
                   {type}

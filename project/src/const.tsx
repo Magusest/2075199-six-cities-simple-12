@@ -44,10 +44,10 @@ const plural = new Intl.PluralRules('eu-US');
 
 const DEFAULT_SELECTED_CARD = -1;
 
-const Classes = {
+const PrefixCls = {
   Main: 'main',
   Property: 'property',
-  Review: 'review',
+  Review: 'reviews',
 } as const;
 
 export {
@@ -60,5 +60,5 @@ export {
   DEFAULT_SORTING,
   plural,
   DEFAULT_SELECTED_CARD,
-  Classes,
+  PrefixCls,
 };

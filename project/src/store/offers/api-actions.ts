@@ -6,6 +6,8 @@ import { Offers, Offer } from 'types/offers.js';
 import { loadChosenOffer, loadOffers, initialLoading, loadNearbyOffer, loadOfferComments } from './actions';
 import { ReviewData, Reviews } from 'types/reviews';
 
+// const {log} = console;
+
 export const fetchOffers = createAsyncThunk<
   void,
   undefined,

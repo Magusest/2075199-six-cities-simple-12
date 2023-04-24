@@ -1,16 +1,15 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from 'const';
+import { AppRoute } from 'const';
 import { MainPage, LoginPage, OfferPage, NotFoundPage } from 'pages';
 import { LoadingScreen, ScrollTop } from 'components';
 import { useAppSlector } from 'hooks/state';
 import { getLoadingStatus } from 'store/offers/selectors';
-import { getAuthorithationStatus } from 'store/user/selectors';
 
 function App(): JSX.Element {
   const isOffersLoading = useAppSlector(getLoadingStatus);
-  const authorizationStatus = useAppSlector(getAuthorithationStatus);
+  // const authorizationStatus = useAppSlector(getAuthorithationStatus);
 
-  if (isOffersLoading && authorizationStatus === AuthorizationStatus.Unknown) {
+  if (isOffersLoading) {
     return (
       <LoadingScreen />
     );
