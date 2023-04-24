@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSlector } from 'hooks/state';
 import { Link } from 'react-router-dom';
 import { AppRoute } from 'const';
-import { changeCity } from 'store/offers/actions';
+import { changeCity } from 'store/offers/reducer';
 import { getCurrentCity } from 'store/offers/selectors';
 
 // const {log} = console;

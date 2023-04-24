@@ -14,10 +14,10 @@ function getTextByCount(count: number, city: string): string {
 }
 
 export default function Main() {
-  const countOffers = useAppSlector(getCurrentOffer).length;
+  const currentOffers = useAppSlector(getCurrentOffer);
   const currentCity = useAppSlector(getCurrentCity);
 
-  const plasesText = getTextByCount(countOffers, currentCity.name);
+  const plasesText = getTextByCount(currentOffers.length, currentCity.name);
 
 
   return (
@@ -33,12 +33,12 @@ export default function Main() {
 
             <div className="cities__places-list places__list tabs__content">
 
-              <OffersList />
+              <OffersList offers={currentOffers}/>
 
             </div>
           </section>
           <div className="cities__right-section">
-            <Map />
+            <Map offers={currentOffers}/>
           </div>
         </div>
       </div>

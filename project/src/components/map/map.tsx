@@ -5,9 +5,14 @@ import { useMap } from 'hooks';
 import { useAppSlector } from 'hooks/state';
 import { AppRoute } from 'const';
 import { useLocation } from 'react-router-dom';
-import { getCurrentCity, getCurrentOffer, getHoverCard } from 'store/offers/selectors';
+import { getCurrentCity, getHoverCard } from 'store/offers/selectors';
+import { Offers } from 'types/offers';
 
 // const {log} = console;
+
+type Props = {
+  offers: Offers;
+}
 
 const defaultMarker = new Icon({
   iconUrl: './img/pin.svg',
@@ -22,9 +27,8 @@ const hoveredMarker = new Icon({
 });
 
 
-export default function Map() {
+export default function Map({offers}: Props) {
 
-  const currentOffers = useAppSlector(getCurrentOffer);
   const currentCity = useAppSlector(getCurrentCity);
   const hoverCard = useAppSlector(getHoverCard);
 
@@ -54,7 +58,7 @@ export default function Map() {
         setCityLocation(currentCity.name);
       }
 
-      const markers = currentOffers.map(
+      const markers = offers.map(
         (offer) =>
           new Marker(
             {
@@ -73,9 +77,9 @@ export default function Map() {
         map.removeLayer(markerLayer);
       };
     }
-  }, [currentCity, cityLocation, map, currentOffers, hoverCard]);
+  }, [currentCity, cityLocation, map, offers, hoverCard]);
 
   return (
-    <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} style={{height: '100vh'}} ref={ref}></section>
+    <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} style={{maxHeight: '100vh'}} ref={ref}></section>
   );
 }

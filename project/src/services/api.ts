@@ -1,6 +1,7 @@
-import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
+import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import { toast } from 'react-toastify';
+import Token from './token';
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
@@ -17,6 +18,18 @@ export const createAPI = (): AxiosInstance => {
     baseURL: BASE_URL,
     timeout: REQUEST_TIMEOUT,
   });
+
+  api.interceptors.request.use(
+    (config: AxiosRequestConfig) => {
+      const token = Token.get();
+
+      if(token && config.headers) {
+        config.headers['x-token'] = token;
+      }
+
+      return config;
+    }
+  );
 
   api.interceptors.response.use(
     (response) => response,

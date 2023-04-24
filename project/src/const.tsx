@@ -4,12 +4,14 @@ const AppRoute = {
   Main: '/',
   Login: '/login',
   Room: '/offer/',
+  NotFound: '/*'
 } as const;
 
 const APIRoute = {
   Offers: '/hotels',
   Login: '/login',
   Logout: '/logout',
+  Comments: '/comments',
 } as const;
 
 enum AuthorizationStatus {
@@ -42,6 +44,16 @@ const plural = new Intl.PluralRules('eu-US');
 
 const DEFAULT_SELECTED_CARD = -1;
 
+const PrefixCls = {
+  Main: 'main',
+  Property: 'property',
+  Review: 'reviews',
+} as const;
+
+const NameSpace = {
+  Data: 'DATA',
+} as const;
+
 export {
   AppRoute,
   APIRoute,
@@ -52,4 +64,6 @@ export {
   DEFAULT_SORTING,
   plural,
   DEFAULT_SELECTED_CARD,
+  PrefixCls,
+  NameSpace,
 };

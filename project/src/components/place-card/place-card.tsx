@@ -1,10 +1,10 @@
 import { useAppDispatch } from 'hooks/state';
-import { AppRoute, DEFAULT_SELECTED_CARD } from 'const';
+import { AppRoute, PrefixCls, DEFAULT_SELECTED_CARD } from 'const';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Offer } from 'types/offers';
 import { PremiumMark, RatingStars } from 'components';
-import { hovereCard } from 'store/offers/actions';
+import { hoverCard } from 'store/offers/reducer';
 
 // const {log} = console;
 
@@ -26,11 +26,11 @@ function PlaceCard({offer}: Props): JSX.Element {
 
   const handlerCardEnter = (currentId: number) => {
     setCardActive({ id: currentId });
-    dispatch(hovereCard(currentId));
+    dispatch(hoverCard(currentId));
   };
 
   const handlerCardLeave = () => {
-    dispatch(hovereCard(DEFAULT_SELECTED_CARD));
+    dispatch(hoverCard(DEFAULT_SELECTED_CARD));
   };
 
   return (
@@ -58,11 +58,7 @@ function PlaceCard({offer}: Props): JSX.Element {
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            < RatingStars rating={rating} />
-          </div>
-        </div>
+        <RatingStars rating={rating} classPrefx={PrefixCls.Main}/>
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Room}${id}`}>{title}</Link>
         </h2>

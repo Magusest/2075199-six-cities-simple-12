@@ -1,5 +1,6 @@
 type Props = {
   rating: number;
+  classPrefx: string;
 }
 
 // Функция переводит цифру рейтинга в проценты от которых будет зависить ширина закрашивания звезд рейтинга
@@ -8,15 +9,19 @@ function ratingCounter(rate: number) {
   return `${width}%`;
 }
 
-export default function RatingStars({rating}: Props) {
+export default function RatingStars({rating, classPrefx}: Props) {
+
   return (
-    <>
-      <span
-        style= {{
-          width: ratingCounter(rating),
-        }}
-      />
-      <span className="visually-hidden">Rating</span>
-    </>
+    <div className={`${classPrefx}__rating rating`}>
+      <div className={`${classPrefx}__stars rating__stars`}>
+        <span
+          style={{
+            width: ratingCounter(rating),
+          }}
+        >
+        </span>
+        <span className="visually-hidden">Rating</span>
+      </div>
+    </div>
   );
 }
