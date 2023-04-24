@@ -1,13 +1,10 @@
-import { SyntheticEvent, useState } from 'react';
+import { memo, SyntheticEvent, useState } from 'react';
 import { sortingOptions } from 'const';
 import { useAppDispatch, useAppSlector } from 'hooks/state';
 import { sortOffers } from 'store/offers/reducer';
-// import { SortingOption } from 'types/sorting';
 import { getSorting } from 'store/offers/selectors';
 
-const {log} = console;
-
-export default function PlaceSorting() {
+function PlaceSorting() {
   const [isOpen, setIsOpen] = useState(false);
   const selectedSorting = useAppSlector(getSorting);
   const dispatch = useAppDispatch();
@@ -15,7 +12,6 @@ export default function PlaceSorting() {
   const clickTypeHandler = (evt: SyntheticEvent<HTMLElement, MouseEvent>) => {
     const target = evt.target as HTMLElement;
     dispatch(sortOffers({checkedSorting: target.textContent as string}));
-    log(target.textContent);
     setIsOpen(!isOpen);
   };
 
@@ -46,3 +42,5 @@ export default function PlaceSorting() {
     </form>
   );
 }
+
+export default memo(PlaceSorting);

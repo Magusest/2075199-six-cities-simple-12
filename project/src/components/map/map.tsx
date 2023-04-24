@@ -1,6 +1,6 @@
 import { Marker, Icon, LayerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { useMap } from 'hooks';
 import { useAppSlector } from 'hooks/state';
 import { AppRoute } from 'const';
@@ -27,7 +27,7 @@ const hoveredMarker = new Icon({
 });
 
 
-export default function Map({offers}: Props) {
+function Map({offers}: Props) {
 
   const currentCity = useAppSlector(getCurrentCity);
   const hoverCard = useAppSlector(getHoverCard);
@@ -83,3 +83,5 @@ export default function Map({offers}: Props) {
     <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} style={{maxHeight: '100vh'}} ref={ref}></section>
   );
 }
+
+export default memo(Map);

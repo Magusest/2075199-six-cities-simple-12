@@ -17,17 +17,20 @@ export default function Location ({location}: Props) {
 
   const dispatch = useAppDispatch();
 
+  const changeCityHandler = () => {
+    dispatch(changeCity(location));
+  };
 
   switch(location) {
     case (currentCity.name):
       return (
-        <Link className="locations__item-link tabs__item tabs__item--active" onClick={() => dispatch(changeCity(location))} to={AppRoute.Main}>
+        <Link className="locations__item-link tabs__item tabs__item--active" onClick={ changeCityHandler } to={AppRoute.Main}>
           <span>{location}</span>
         </Link>
       );
     default:
       return (
-        <Link className="locations__item-link tabs__item" onClick={() => dispatch(changeCity(location))} to={AppRoute.Main}>
+        <Link className="locations__item-link tabs__item" onClick={ changeCityHandler } to={AppRoute.Main}>
           <span>{location}</span>
         </Link>
       );

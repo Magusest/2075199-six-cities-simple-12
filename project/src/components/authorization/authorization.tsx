@@ -1,12 +1,12 @@
 import { AppRoute, AuthorizationStatus } from 'const';
 import { useAppSlector, useAppDispatch } from 'hooks/state';
 import { store } from 'store';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { checkAuthStatus, logoutAction } from 'store/user/api-actions';
 import { getAuthorithationStatus, getUserData } from 'store/user/selectors';
 
-export default function Authrizarion() {
+function Authrizarion() {
 
   const userData = useAppSlector(getUserData);
   const authorizationStatus = useAppSlector(getAuthorithationStatus);
@@ -59,3 +59,5 @@ export default function Authrizarion() {
       );
   }
 }
+
+export default memo(Authrizarion);

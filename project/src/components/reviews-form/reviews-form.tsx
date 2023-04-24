@@ -1,6 +1,7 @@
-import { useAppDispatch } from 'hooks/state';
+import { useAppDispatch, useAppSlector } from 'hooks/state';
 import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
 import { sendReviewAction } from 'store/offers/api-actions';
+import { getSendingError, getSendingLoading } from 'store/offers/selectors';
 import { raitingRates } from './utils';
 
 const MIN_COMMENT_LENGTH = 50;
@@ -16,7 +17,11 @@ type FormData = {
 }
 
 export default function ReviewsForm ({offerId}: Props) {
+  const isSending = useAppSlector(getSendingLoading);
+  const isError = useAppSlector(getSendingError);
+
   const dispatch = useAppDispatch();
+
   const [formData, setFormData] = useState<FormData>({
     rating: '',
     review: '',
@@ -39,7 +44,9 @@ export default function ReviewsForm ({offerId}: Props) {
     evt.preventDefault();
     const payload = {...formData, offerId};
     dispatch(sendReviewAction(payload));
-    setFormData({ rating: '', review: ''});
+    if (!isError) {
+      setFormData({ rating: '', review: ''});
+    }
   };
 
   return (
@@ -49,7 +56,7 @@ export default function ReviewsForm ({offerId}: Props) {
         {raitingRates.map(({title, value}) =>
           (
             <Fragment key={title}>
-              <input className="form__rating-input visually-hidden" onChange={changeHandler} name="rating" value={value} id={`${value}-stars`} checked={formData.rating === value} type="radio"/>
+              <input className="form__rating-input visually-hidden" onChange={changeHandler} name="rating" value={value} id={`${value}-stars`} checked={formData.rating === value} disabled={isSending} type="radio"/>
               <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
                 <svg className="form__star-image" width="37" height="33">
                   <use xlinkHref="#icon-star"></use>
@@ -59,7 +66,7 @@ export default function ReviewsForm ({offerId}: Props) {
           )
         )}
       </div>
-      <textarea className="reviews__textarea form__textarea" onChange={changeHandler} value={review} id="review" name="review" minLength={50} placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+      <textarea className="reviews__textarea form__textarea" onChange={changeHandler} value={review} id="review" name="review" minLength={50} disabled={isSending} placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
