@@ -14,3 +14,5 @@ export const getOfferComments = (state: State) => state[NameSpace.Data].chosenOf
 export const getErrorStatus = (state: State) => state[NameSpace.Data].chosenOffer.isError;
 export const getLoadingOfferStatus = (state: State) => state[NameSpace.Data].chosenOffer.isLoading;
 
+export const getSendingLoading = (state: State) => state[NameSpace.Data].review.isSending;
+export const getSendingError = (state: State) => state[NameSpace.Data].review.isSendError;

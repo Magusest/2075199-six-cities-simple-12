@@ -1,6 +1,7 @@
 import { AppRoute } from 'const';
 import { Logo, Authtorization } from 'components';
 import { useLocation } from 'react-router-dom';
+import { memo } from 'react';
 
 function Header(): JSX.Element {
   const { pathname } = useLocation();
@@ -21,4 +22,4 @@ function Header(): JSX.Element {
   );
 }
 
-export default Header;
+export default memo(Header);
