@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
 import { sortingOptions } from 'const';
 import { useAppDispatch, useAppSlector } from 'hooks/state';
-import { sortOffers } from 'store/offers/actions';
+import { sortOffers } from 'store/offers/reducer';
 // import { SortingOption } from 'types/sorting';
 import { getSorting } from 'store/offers/selectors';
 

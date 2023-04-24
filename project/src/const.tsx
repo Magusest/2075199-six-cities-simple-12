@@ -50,6 +50,10 @@ const PrefixCls = {
   Review: 'reviews',
 } as const;
 
+const NameSpace = {
+  Data: 'DATA',
+} as const;
+
 export {
   AppRoute,
   APIRoute,
@@ -61,4 +65,5 @@ export {
   plural,
   DEFAULT_SELECTED_CARD,
   PrefixCls,
+  NameSpace,
 };

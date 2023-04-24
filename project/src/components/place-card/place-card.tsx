@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Offer } from 'types/offers';
 import { PremiumMark, RatingStars } from 'components';
-import { hovereCard } from 'store/offers/actions';
+import { hoverCard } from 'store/offers/reducer';
 
 // const {log} = console;
 
@@ -26,11 +26,11 @@ function PlaceCard({offer}: Props): JSX.Element {
 
   const handlerCardEnter = (currentId: number) => {
     setCardActive({ id: currentId });
-    dispatch(hovereCard(currentId));
+    dispatch(hoverCard(currentId));
   };
 
   const handlerCardLeave = () => {
-    dispatch(hovereCard(DEFAULT_SELECTED_CARD));
+    dispatch(hoverCard(DEFAULT_SELECTED_CARD));
   };
 
   return (
