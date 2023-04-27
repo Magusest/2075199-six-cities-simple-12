@@ -8,14 +8,14 @@ function MainPage(): JSX.Element {
   const offers = useAppSlector(getCurrentOffer);
 
   return (
-    <>
+    <div className="page page--gray page--main">
       <Header />
       {
         offers.length === 0
           ? <EmptyMain />
           : <Main />
       }
-    </>
+    </div>
   );
 }
 

@@ -26,6 +26,8 @@ export default function OfferPage(): JSX.Element {
     return <LoadingScreen />;
   }
   return (
-    <OfferScreen offer={chosenOffer as Offer}/>
+    <div className="page">
+      <OfferScreen offer={chosenOffer as Offer}/>
+    </div>
   );
 }

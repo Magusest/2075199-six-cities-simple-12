@@ -1,11 +1,12 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {APIRoute, AuthorizationStatus} from 'const';
+import {APIRoute, AppRoute, AuthorizationStatus} from 'const';
 import {AppDispatch, State} from 'types/state';
 import { UserData } from 'types/user-data';
 import { AuthData } from 'types/auth-data';
 import Token from 'services/token';
 import { setAuthorizationStatus, setUserData } from './actions';
+import { redirectToRoute } from 'store/actions';
 
 
 export const checkAuthStatus = createAsyncThunk<
@@ -42,6 +43,7 @@ export const loginAction = createAsyncThunk<
     Token.save(data.token);
     dispatch(setUserData(data));
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+    dispatch(redirectToRoute(AppRoute.Main));
   }
 );
 

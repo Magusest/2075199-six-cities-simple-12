@@ -1,47 +1,32 @@
-import { useAppDispatch } from 'hooks/state';
-import { AppRoute, PrefixCls, DEFAULT_SELECTED_CARD } from 'const';
-import { useState } from 'react';
+import { AppRoute, PrefixCls } from 'const';
 import { Link, useLocation } from 'react-router-dom';
 import { Offer } from 'types/offers';
 import { PremiumMark, RatingStars } from 'components';
-import { hoverCard } from 'store/offers/reducer';
-
-// const {log} = console;
-
-type CardStateType = {
-  id: number | null;
-}
+import { memo } from 'react';
 
 type Props = {
   offer: Offer;
+  onHoverCard?: (offer: Offer | null) => void;
+
 }
 
-function PlaceCard({offer}: Props): JSX.Element {
+function PlaceCard({offer, onHoverCard}: Props): JSX.Element {
 
   const { pathname } = useLocation();
-  const dispatch = useAppDispatch();
 
   const {previewImage, price, title, type, id, isPremium, rating} = offer;
-  const [cardActive, setCardActive] = useState<CardStateType>({ id: null });
 
-  const handlerCardEnter = (currentId: number) => {
-    setCardActive({ id: currentId });
-    dispatch(hoverCard(currentId));
-  };
-
-  const handlerCardLeave = () => {
-    dispatch(hoverCard(DEFAULT_SELECTED_CARD));
+  const handleOfferHover = (value: Offer | null) => {
+    if (typeof onHoverCard === 'function') {
+      onHoverCard(value);
+    }
   };
 
   return (
     <article
-      className={
-        cardActive.id === id
-          ? `${AppRoute.Main === pathname ? 'cities__card' : 'near-places__card'} place-card place-card_active`
-          : `${AppRoute.Main === pathname ? 'cities__card' : 'near-places__card'} place-card`
-      }
-      onMouseEnter={() => handlerCardEnter(id)}
-      onMouseLeave={handlerCardLeave}
+      className="cities__card place-card"
+      onMouseEnter={() => handleOfferHover(offer)}
+      onMouseLeave={() => handleOfferHover(null)}
     >
 
       {isPremium ? <PremiumMark className={'place-card__mark'}/> : null}
@@ -68,4 +53,4 @@ function PlaceCard({offer}: Props): JSX.Element {
   );
 }
 
-export default PlaceCard;
+export default memo(PlaceCard);

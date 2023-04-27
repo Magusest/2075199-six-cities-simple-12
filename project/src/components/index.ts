@@ -19,5 +19,5 @@ export { default as Main } from './main/main';
 export { default as EmptyMain } from './empty-main/empty-main';
 export { default as ScrollTop } from './scroll-top/scroll-top';
 export { default as OfferScreen } from './offer-screen/offer-screen';
-
+export { default as HistoryRouter } from './history-route/history-route';
 

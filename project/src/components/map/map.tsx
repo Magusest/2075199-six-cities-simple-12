@@ -5,13 +5,12 @@ import { useMap } from 'hooks';
 import { useAppSlector } from 'hooks/state';
 import { AppRoute } from 'const';
 import { useLocation } from 'react-router-dom';
-import { getCurrentCity, getHoverCard } from 'store/offers/selectors';
-import { Offers } from 'types/offers';
-
-// const {log} = console;
+import { getCurrentCity } from 'store/offers/selectors';
+import { Offer, Offers } from 'types/offers';
 
 type Props = {
   offers: Offers;
+  selectedOffer: Offer | null;
 }
 
 const defaultMarker = new Icon({
@@ -27,10 +26,9 @@ const hoveredMarker = new Icon({
 });
 
 
-function Map({offers}: Props) {
+function Map({offers, selectedOffer}: Props) {
 
   const currentCity = useAppSlector(getCurrentCity);
-  const hoverCard = useAppSlector(getHoverCard);
 
 
   const {pathname} = useLocation();
@@ -65,7 +63,7 @@ function Map({offers}: Props) {
               lat: offer.location.latitude,
               lng: offer.location.longitude,
             }, {
-              icon: offer.id === hoverCard ? hoveredMarker : defaultMarker,
+              icon: offer.id === selectedOffer?.id ? hoveredMarker : defaultMarker,
             }
           )
       );
@@ -77,7 +75,7 @@ function Map({offers}: Props) {
         map.removeLayer(markerLayer);
       };
     }
-  }, [currentCity, cityLocation, map, offers, hoverCard]);
+  }, [currentCity, cityLocation, map, offers, selectedOffer]);
 
   return (
     <section className={AppRoute.Main === pathname ? 'cities__map map' : 'property__map map'} style={{maxHeight: '100vh'}} ref={ref}></section>

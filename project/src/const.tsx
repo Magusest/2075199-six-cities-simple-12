@@ -1,11 +1,11 @@
 import { City } from 'types/offers';
 
-const AppRoute = {
-  Main: '/',
-  Login: '/login',
-  Room: '/offer/',
-  NotFound: '/*'
-} as const;
+enum AppRoute {
+  Main = '/',
+  Login = '/login',
+  Room = '/offer/',
+  NotFound = '/*'
+}
 
 const APIRoute = {
   Offers: '/hotels',
@@ -45,7 +45,7 @@ const plural = new Intl.PluralRules('eu-US');
 const DEFAULT_SELECTED_CARD = -1;
 
 const PrefixCls = {
-  Main: 'main',
+  Main: 'place-card',
   Property: 'property',
   Review: 'reviews',
 } as const;
