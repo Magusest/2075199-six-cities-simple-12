@@ -3,6 +3,8 @@ import { AuthorizationStatus } from 'const';
 import { UserData } from 'types/user-data';
 import { setAuthorizationStatus, setUserData } from './actions';
 
+const {log} = console;
+
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
   userData: UserData;
@@ -22,10 +24,12 @@ const InitialState: InitialState = {
 
 export const userReducer = createReducer(InitialState, (builder) => {
   builder
-    .addCase(setAuthorizationStatus, (status, actions) => {
-      status.authorizationStatus = actions.payload;
+    .addCase(setAuthorizationStatus, (state, actions) => {
+      state.authorizationStatus = actions.payload;
+      log(state.authorizationStatus);
     })
     .addCase(setUserData, (state, actions) => {
       state.userData = actions.payload;
+      log(state.authorizationStatus);
     });
 });

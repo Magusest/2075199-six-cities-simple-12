@@ -1,5 +1,5 @@
 import {Header, Map, OffersList, PremiumMark, RatingStars, ReviewsSection} from 'components';
-import { PrefixCls } from 'const';
+import { plural, PrefixCls } from 'const';
 import { useAppSlector } from 'hooks/state';
 import { NotFoundPage } from 'pages';
 import { Helmet } from 'react-helmet-async';
@@ -9,6 +9,27 @@ import { Offer } from 'types/offers';
 type Props = {
   offer: Offer;
 }
+
+function getBedroomCountText(count: number): string {
+  const pluralRules = plural.select(count);
+  switch(pluralRules) {
+    case 'one':
+      return `${count} Bedroom`;
+    default:
+      return `${count} Bedrooms`;
+  }
+}
+
+function getAdultCountText(count: number): string {
+  const pluralRules = plural.select(count);
+  switch(pluralRules) {
+    case 'one':
+      return `Max ${count} adult`;
+    default:
+      return `Max ${count} adults`;
+  }
+}
+
 const ProTag = () =>
   (
     <span className="property__user-status">
@@ -27,6 +48,8 @@ export default function OfferScreen({offer}: Props) {
   const {images, title, rating, type, bedrooms, maxAdults, goods, price, isPremium, host, description, id } = offer;
   const {name, avatarUrl, isPro} = host;
 
+  const bedroomText = getBedroomCountText(bedrooms);
+  const maxAdultText = getAdultCountText(maxAdults);
 
   return (
     <>
@@ -63,10 +86,10 @@ export default function OfferScreen({offer}: Props) {
                   {type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {bedrooms} Bedrooms
+                  {bedroomText}
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {maxAdults} adults
+                  {maxAdultText}
                 </li>
               </ul>
               <div className="property__price">
@@ -106,7 +129,7 @@ export default function OfferScreen({offer}: Props) {
             </div>
           </div>
 
-          <Map offers={nearbyOffers}/>
+          <Map offers={[...nearbyOffers, offer]} selectedOffer={offer}/>
 
         </section>
         <div className="container">

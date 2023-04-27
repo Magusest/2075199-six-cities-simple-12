@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from 'const';
 import { MainPage, LoginPage, OfferPage, NotFoundPage } from 'pages';
 import { LoadingScreen, ScrollTop } from 'components';
@@ -7,7 +7,6 @@ import { getLoadingStatus } from 'store/offers/selectors';
 
 function App(): JSX.Element {
   const isOffersLoading = useAppSlector(getLoadingStatus);
-  // const authorizationStatus = useAppSlector(getAuthorithationStatus);
 
   if (isOffersLoading) {
     return (
@@ -16,7 +15,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <>
       <ScrollTop />
       <Routes>
         <Route path={AppRoute.Main} element={<MainPage />}/>
@@ -26,7 +25,7 @@ function App(): JSX.Element {
         </Route>
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 

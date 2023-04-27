@@ -2,6 +2,8 @@ import { useAppSlector } from 'hooks/state';
 import { plural, offerLocations } from 'const';
 import { LocationList, PlaceSorting, OffersList, Map } from 'components';
 import { getCurrentCity, getCurrentOffer } from 'store/offers/selectors';
+import { useState } from 'react';
+import { Offer } from 'types/offers';
 
 function getTextByCount(count: number, city: string): string {
   const pluralRules = plural.select(count);
@@ -16,6 +18,8 @@ function getTextByCount(count: number, city: string): string {
 export default function Main() {
   const currentOffers = useAppSlector(getCurrentOffer);
   const currentCity = useAppSlector(getCurrentCity);
+
+  const [activeCard, setActiveCard] = useState<Offer | null>(null);
 
   const plasesText = getTextByCount(currentOffers.length, currentCity.name);
 
@@ -33,12 +37,12 @@ export default function Main() {
 
             <div className="cities__places-list places__list tabs__content">
 
-              <OffersList offers={currentOffers}/>
+              <OffersList offers={currentOffers} onHoverCard={setActiveCard}/>
 
             </div>
           </section>
           <div className="cities__right-section">
-            <Map offers={currentOffers}/>
+            <Map offers={currentOffers} selectedOffer={activeCard}/>
           </div>
         </div>
       </div>

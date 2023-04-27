@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
-import { App } from 'components';
+import { App, HistoryRouter } from 'components';
 import { store } from 'store';
 import { fetchOffers } from 'store/offers/api-actions';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import browserHistory from 'browser-history';
 
 store.dispatch(fetchOffers());
 
@@ -17,10 +18,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <HelmetProvider>
+      <HistoryRouter history={browserHistory}>
         <ToastContainer />
-        <App />
-      </HelmetProvider>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
+      </HistoryRouter>
     </Provider>
   </React.StrictMode>,
 );
