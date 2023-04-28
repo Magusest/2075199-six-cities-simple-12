@@ -1,35 +1,40 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { AuthorizationStatus } from 'const';
+import { createSlice } from '@reduxjs/toolkit';
+import { AuthorizationStatus, NameSpace } from 'const';
 import { UserData } from 'types/user-data';
-import { setAuthorizationStatus, setUserData } from './actions';
-
-const {log} = console;
+import { loginAction, logoutUserAction, checkAuthStatus } from './api-actions';
 
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
-  userData: UserData;
+  userData: UserData | null;
 }
 
-const InitialState: InitialState = {
+export const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  userData: {
-    avatarUrl: '',
-    id: 1,
-    isPro: false,
-    name: '',
-    email: '',
-    token: '',
-  },
+  userData: null,
 };
 
-export const userReducer = createReducer(InitialState, (builder) => {
-  builder
-    .addCase(setAuthorizationStatus, (state, actions) => {
-      state.authorizationStatus = actions.payload;
-      log(state.authorizationStatus);
-    })
-    .addCase(setUserData, (state, actions) => {
-      state.userData = actions.payload;
-      log(state.authorizationStatus);
-    });
+export const userReducer = createSlice({
+  name: NameSpace.User,
+  initialState,
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(loginAction.fulfilled, (state, action) => {
+        state.authorizationStatus = AuthorizationStatus.Auth;
+        state.userData = action.payload;
+      })
+      .addCase(loginAction.rejected, (state) => {
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
+      })
+      .addCase(logoutUserAction.fulfilled, (state) => {
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
+      })
+      .addCase(checkAuthStatus.fulfilled, (state, action) => {
+        state.authorizationStatus = AuthorizationStatus.Auth;
+        state.userData = action.payload;
+      })
+      .addCase(checkAuthStatus.rejected, (state) => {
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
+      });
+  },
 });

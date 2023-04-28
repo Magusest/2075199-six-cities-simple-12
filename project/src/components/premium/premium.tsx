@@ -1,6 +1,3 @@
-// import { AppRoute } from 'const';
-
-
 type Props = {
   className: string;
 }

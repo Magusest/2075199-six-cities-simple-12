@@ -4,8 +4,6 @@ import {APIRoute} from 'const';
 import { Offers, Offer } from 'types/offers.js';
 import { ReviewData, Reviews } from 'types/reviews';
 
-// const {log} = console;
-
 export const fetchOffers = createAsyncThunk<
   Offers,
   undefined,

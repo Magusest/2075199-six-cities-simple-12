@@ -33,7 +33,7 @@ function PlaceCard({offer, onHoverCard}: Props): JSX.Element {
 
       <div className={`${AppRoute.Main === pathname ? 'cities__image-wrapper' : 'near-places__image-wrapper'} place-card__image-wrapper`}>
         <Link to={`${AppRoute.Room}${id}`}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
         </Link>
       </div>
       <div className="place-card__info">

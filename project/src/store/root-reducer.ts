@@ -4,6 +4,6 @@ import { offersReducer } from './offers/reducer';
 import { userReducer } from './user/reducer';
 
 export const rootReducer = combineReducers({
-  user: userReducer,
+  [NameSpace.User]: userReducer.reducer,
   [NameSpace.Data]: offersReducer.reducer,
 });

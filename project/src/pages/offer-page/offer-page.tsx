@@ -6,8 +6,6 @@ import { getChosenOffer, getLoadingOfferStatus } from 'store/offers/selectors';
 import { fetchChosenOffer } from 'store/offers/api-actions';
 import { Offer } from 'types/offers';
 
-// const {log} = console;
-
 export default function OfferPage(): JSX.Element {
 
   const { id } = useParams();
