@@ -3,13 +3,15 @@ import { useAppSlector, useAppDispatch } from 'hooks/state';
 import { store } from 'store';
 import { memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { checkAuthStatus, logoutAction } from 'store/user/api-actions';
-import { getAuthorithationStatus, getUserData } from 'store/user/selectors';
+import { checkAuthStatus, logoutUserAction } from 'store/user/api-actions';
+import { getAuthorithationStatus, getIsChecking, getUserData } from 'store/user/selectors';
+import LoadingScreen from 'components/loading-screen/loading-screen';
 
 function Authrizarion() {
 
   const userData = useAppSlector(getUserData);
   const authorizationStatus = useAppSlector(getAuthorithationStatus);
+  const isChecking = useAppSlector(getIsChecking);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -18,6 +20,10 @@ function Authrizarion() {
     }
   }, [authorizationStatus]);
 
+  if (isChecking) {
+    <LoadingScreen />;
+  }
+
   switch (authorizationStatus) {
     case (AuthorizationStatus.Auth):
       return (
@@ -25,8 +31,12 @@ function Authrizarion() {
           <ul className="header__nav-list">
             <li className="header__nav-item user">
               <div className="header__nav-profile">
-                <div className="header__avatar-wrapper user__avatar-wrapper" style={{backgroundImage: `url(${ userData.avatarUrl })`}}></div>
-                <span className="header__user-name user__name">{ userData.email }</span>
+                <div
+                  className="header__avatar-wrapper user__avatar-wrapper"
+                  style={{backgroundImage: `url(${ userData?.avatarUrl || ''})`}}
+                >
+                </div>
+                <span className="header__user-name user__name">{ userData?.email }</span>
               </div>
             </li>
             <li className="header__nav-item">
@@ -35,7 +45,7 @@ function Authrizarion() {
                 to={AppRoute.Main}
                 onClick={(event) => {
                   event.preventDefault();
-                  dispatch(logoutAction());
+                  dispatch(logoutUserAction());
                 }}
               >
                 <span className="header__signout">Sign out</span>

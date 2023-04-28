@@ -52,6 +52,7 @@ const PrefixCls = {
 
 const NameSpace = {
   Data: 'DATA',
+  User: 'USER',
 } as const;
 
 export {
