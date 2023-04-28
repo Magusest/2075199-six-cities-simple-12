@@ -4,14 +4,12 @@ import { store } from 'store';
 import { memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { checkAuthStatus, logoutUserAction } from 'store/user/api-actions';
-import { getAuthorithationStatus, getIsChecking, getUserData } from 'store/user/selectors';
-import LoadingScreen from 'components/loading-screen/loading-screen';
+import { getAuthorithationStatus, getUserData } from 'store/user/selectors';
 
 function Authrizarion() {
 
   const userData = useAppSlector(getUserData);
   const authorizationStatus = useAppSlector(getAuthorithationStatus);
-  const isChecking = useAppSlector(getIsChecking);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -19,10 +17,6 @@ function Authrizarion() {
       store.dispatch(checkAuthStatus());
     }
   }, [authorizationStatus]);
-
-  if (isChecking) {
-    <LoadingScreen />;
-  }
 
   switch (authorizationStatus) {
     case (AuthorizationStatus.Auth):

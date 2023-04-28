@@ -55,6 +55,13 @@ const NameSpace = {
   User: 'USER',
 } as const;
 
+const housingType = {
+  apartment: 'Apartment',
+  room: 'Private Room',
+  house: 'House',
+  hotel: 'Hotel',
+};
+
 export {
   AppRoute,
   APIRoute,
@@ -67,4 +74,5 @@ export {
   DEFAULT_SELECTED_CARD,
   PrefixCls,
   NameSpace,
+  housingType,
 };

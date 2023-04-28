@@ -28,7 +28,7 @@ type InitialState = {
   error: string | null;
 }
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
   offers: {
     allOffers: [],
     currentOffers: [],
@@ -105,8 +105,8 @@ export const offersReducer = createSlice({
       })
       .addCase(fetchOffers.fulfilled, (state, actions) => {
         state.offers.allOffers = actions.payload;
-        state.offers.currentOffers = state.offers.allOffers.filter((offer) => offer.city.name === state.city.name);
         state.offers.isLoading = false;
+        state.offers.currentOffers = state.offers.allOffers.filter((offer) => offer.city.name === state.city.name);
       })
       .addCase(fetchOffers.rejected, (state) => {
         state.offers.isLoading = true;
@@ -119,7 +119,7 @@ export const offersReducer = createSlice({
         const [chosenOffer, nearbyOffers, comments] = actions.payload;
         state.chosenOffer.offer = chosenOffer;
         state.chosenOffer.nearbyOffers = nearbyOffers;
-        state.chosenOffer.comments = comments;
+        state.chosenOffer.comments = sortingComments(comments);
         state.chosenOffer.isLoading = false;
       })
       .addCase(fetchChosenOffer.rejected, (state) => {
