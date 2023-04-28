@@ -3,8 +3,6 @@ import { AuthorizationStatus, NameSpace } from 'const';
 import { UserData } from 'types/user-data';
 import { loginAction, logoutUserAction, checkAuthStatus } from './api-actions';
 
-// const {log} = console;
-
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
   userData: UserData | null;

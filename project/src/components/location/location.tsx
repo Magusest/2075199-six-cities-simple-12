@@ -4,8 +4,6 @@ import { AppRoute } from 'const';
 import { changeCity } from 'store/offers/reducer';
 import { getCurrentCity } from 'store/offers/selectors';
 
-// const {log} = console;
-
 type Props = {
   location: string;
 };
