@@ -1,3 +1,5 @@
+import { PrefixCls } from 'const';
+
 type Props = {
   rating: number;
   classPrefx: string;
@@ -22,6 +24,11 @@ export default function RatingStars({rating, classPrefx}: Props) {
         </span>
         <span className="visually-hidden">Rating</span>
       </div>
+      {
+        classPrefx === PrefixCls.Property
+          ? <span className="property__rating-value rating__value">{rating}</span>
+          : null
+      }
     </div>
   );
 }
